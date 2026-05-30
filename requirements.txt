@@ -1,2 +1,6 @@
 streamlit
 requests
+streamlit-option-menu
+streamlit-lottie
+streamlit-extras
+streamlit-card
