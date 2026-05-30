@@ -19,7 +19,7 @@ pregunta = st.text_area("Describe tu consulta")
 
 if st.button("Enviar Consulta"):
 
-    webhook_url = "https://hook.us2.make.com/x0obbhw96ggsb0oqcjodrqlgyhmfaav2"
+    webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
 
     datos = {
         "employee_id": employee_id,
