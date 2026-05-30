@@ -32,8 +32,8 @@ if st.button("Consultar"):
         st.success("Consulta procesada correctamente")
 
         try:
-            resultado = response.text
-            st.info(resultado)
+            resultado = respuesta.json()["respuesta"]
+            st.success(resultado)
 
         except:
             st.error("No se pudo leer la respuesta")
