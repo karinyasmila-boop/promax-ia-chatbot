@@ -94,10 +94,10 @@ with col1:
 
 with col2:
 
-    st.image(
-        "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
-        width=280
-    )
+   st.image(
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+    width=320
+)
 
 # KPI ROW
 k1,k2,k3,k4 = st.columns(4)
