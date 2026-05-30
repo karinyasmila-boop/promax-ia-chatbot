@@ -26,17 +26,22 @@ if st.button("Enviar Consulta"):
         "text": pregunta
     }
 
-    respuesta = requests.post(webhook_url, json=datos)
+    try:
 
-    if respuesta.status_code == 200:
-        st.success("Consulta procesada correctamente")
+        respuesta = requests.post(webhook_url, json=datos)
 
-         try:
-            resultado = respuesta.text
+        if respuesta.status_code == 200:
+
+            st.success("Consulta procesada correctamente")
+
+            data = respuesta.json()
+
+            resultado = data["respuesta"]
+
             st.info(resultado)
 
-        except:
-            st.error("No se pudo leer la respuesta")
+        else:
+            st.error("Error conectando con Make")
 
-    else:
-        st.error("Error conectando con Make")
+    except Exception as e:
+        st.error(f"Error: {e}")
