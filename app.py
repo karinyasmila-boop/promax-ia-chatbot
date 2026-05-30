@@ -3,7 +3,7 @@ import requests
 
 st.title("PROMAX IA 🤖 Compensaciones")
 
-employee_id = st.text_input("Ingresa tu código de empleado")
+employee_id = st.text_input("Ingresa tu código de empleado"),
 [Ejm: PEXXXXXXXX]
 
 consulta = st.selectbox(
