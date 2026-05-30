@@ -32,7 +32,7 @@ if st.button("Consultar"):
         st.success("Consulta procesada correctamente")
 
         try:
-            resultado = respuesta.text
+            resultado = response.text
             st.info(resultado)
 
         except:
