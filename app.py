@@ -130,7 +130,7 @@ if prompt:
         "content":prompt
     })
 
-    webhook_url = "TU_WEBHOOK"
+    webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
 
     payload = {
         "employee_id":"PE0000012",
