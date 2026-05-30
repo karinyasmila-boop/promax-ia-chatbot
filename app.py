@@ -51,7 +51,7 @@ col1, col2 = st.columns([2.3, 1])
 
 with col1:
 
-    st.markdown("""
+    hero_html = """
     <div class="hero-container">
 
         <div class="hero-label">
@@ -67,8 +67,8 @@ with col1:
         </p>
 
         <p class="hero-description">
-            Plataforma IA especializada en compensaciones, 
-            bandas salariales, planes de carrera y analítica 
+            Plataforma IA especializada en compensaciones,
+            bandas salariales, planes de carrera y analítica
             estratégica del talento.
         </p>
 
@@ -89,7 +89,9 @@ with col1:
         </div>
 
     </div>
-    """, unsafe_allow_html=True)
+    """
+
+    st.markdown(hero_html, unsafe_allow_html=True)
 
 with col2:
 
