@@ -531,16 +531,14 @@ main_col, side_col = st.columns([3, 1])
 
 with main_col:
 
-    st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
+    hero_left, hero_right = st.columns([1, 1.4])
 
-    left, right = st.columns([1, 1.4])
+    with hero_left:
 
-    with left:
-
-        st.image(
-            "https://i.imgur.com/MtV8Z6v.png",
-            width=340
-        )
+    st.image(
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+        width=350
+    ))
 
     with right:
 
