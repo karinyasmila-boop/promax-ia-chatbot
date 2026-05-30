@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 st.title("PROMAX IA Compensaciones")
 
@@ -16,16 +17,26 @@ consulta = st.selectbox(
 pregunta = st.text_area("Describe tu consulta")
 
 if st.button("Consultar"):
-    st.success("Consulta enviada correctamente")
 
-    st.write("Empleado:", employee_id)
-    st.write("Opción:", consulta)
-    st.write("Consulta:", pregunta)
+    webhook_url = "https://hook.us2.make.com/x0obbhw96ggsb0oqcjodrqlgyhmfaav2"
 
-    respuesta = f"""
-    Hola. Tu consulta sobre {consulta} fue registrada correctamente.
+    datos = {
+        "employee_id": employee_id,
+        "selected_option": consulta,
+        "text": pregunta
+    }
 
-    Próximamente el sistema responderá con información personalizada.
-    """
+    respuesta = requests.post(webhook_url, json=datos)
 
-    st.info(respuesta)
+    if respuesta.status_code == 200:
+        st.success("Consulta procesada correctamente")
+
+        try:
+            resultado = respuesta.text
+            st.info(resultado)
+
+        except:
+            st.error("No se pudo leer la respuesta")
+
+    else:
+        st.error("Error conectando con Make")
