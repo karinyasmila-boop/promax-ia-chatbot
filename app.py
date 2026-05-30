@@ -47,57 +47,61 @@ with st.sidebar:
     )
 
 # HERO SECTION
-col1, col2 = st.columns([2.3, 1])
+col1, col2 = st.columns([2.2, 1])
 
 with col1:
 
-    hero_html = """
-    <div class="hero-container">
+    st.markdown(
+        "<div class='hero-label'>🤖 AI Powered HR Intelligence</div>",
+        unsafe_allow_html=True
+    )
 
-        <div class="hero-label">
-            🤖 AI Powered HR Intelligence
-        </div>
+    st.markdown(
+        "<h1 class='hero-title'>ADA PROMAX IA</h1>",
+        unsafe_allow_html=True
+    )
 
-        <h1 class="hero-title">
-            ADA PROMAX IA
-        </h1>
+    st.markdown(
+        "<p class='hero-subtitle'>Tu copiloto inteligente de Recursos Humanos</p>",
+        unsafe_allow_html=True
+    )
 
-        <p class="hero-subtitle">
-            Tu copiloto inteligente de Recursos Humanos
+    st.markdown(
+        """
+        <p class='hero-description'>
+        Plataforma IA especializada en compensaciones,
+        bandas salariales, planes de carrera y analítica
+        estratégica del talento.
         </p>
+        """,
+        unsafe_allow_html=True
+    )
 
-        <p class="hero-description">
-            Plataforma IA especializada en compensaciones,
-            bandas salariales, planes de carrera y analítica
-            estratégica del talento.
-        </p>
+    badge1, badge2, badge3 = st.columns(3)
 
-        <div class="hero-badges">
+    with badge1:
+        st.markdown(
+            "<div class='hero-badge'>⚡ IA Enterprise</div>",
+            unsafe_allow_html=True
+        )
 
-            <span class="hero-badge">
-                ⚡ IA Enterprise
-            </span>
+    with badge2:
+        st.markdown(
+            "<div class='hero-badge'>📊 HR Analytics</div>",
+            unsafe_allow_html=True
+        )
 
-            <span class="hero-badge">
-                📊 HR Analytics
-            </span>
-
-            <span class="hero-badge">
-                💰 Compensation Intelligence
-            </span>
-
-        </div>
-
-    </div>
-    """
-
-    st.markdown(hero_html, unsafe_allow_html=True)
+    with badge3:
+        st.markdown(
+            "<div class='hero-badge'>💰 Compensation AI</div>",
+            unsafe_allow_html=True
+        )
 
 with col2:
 
     st.image(
         "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
-        width=260
+        width=280
     )
 
 # KPI ROW
