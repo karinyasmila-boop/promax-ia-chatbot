@@ -14,21 +14,153 @@ section[data-testid="stSidebar"] {
     border-right: 1px solid rgba(255,255,255,0.08);
 }
 
-/* HERO */
+/* HERO SECTION */
 
-.hero-section h1 {
+.hero-container {
 
-    font-size: 72px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+/* LABEL */
+
+.hero-label {
+
+    width: fit-content;
+
+    padding: 10px 18px;
+
+    border-radius: 999px;
+
+    background: rgba(124,58,237,0.15);
+
+    border: 1px solid rgba(124,58,237,0.35);
+
+    color: #C4B5FD;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 24px;
+
+    backdrop-filter: blur(12px);
+
+    animation: pulseGlow 4s infinite;
+}
+
+/* TITLE */
+
+.hero-title {
+
+    font-size: 82px;
+
     font-weight: 800;
+
+    line-height: 1;
+
+    margin-bottom: 20px;
 
     background: linear-gradient(
         90deg,
         #60A5FA,
+        #818CF8,
         #A78BFA
     );
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    letter-spacing: -2px;
+}
+
+/* SUBTITLE */
+
+.hero-subtitle {
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    color: white;
+
+    margin-bottom: 18px;
+}
+
+/* DESCRIPTION */
+
+.hero-description {
+
+    max-width: 760px;
+
+    color: #94A3B8;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+/* BADGES CONTAINER */
+
+.hero-badges {
+
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+/* BADGE */
+
+.hero-badge {
+
+    padding: 12px 22px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    color: #E2E8F0;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.hero-badge:hover {
+
+    transform: translateY(-3px);
+
+    border: 1px solid #8B5CF6;
+
+    box-shadow:
+        0 0 20px rgba(139,92,246,0.35);
+}
+
+/* GLOW */
+
+@keyframes pulseGlow {
+
+    0% {
+        box-shadow: 0 0 10px rgba(124,58,237,0.15);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(124,58,237,0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(124,58,237,0.15);
+    }
 }
 
 /* CARDS */
