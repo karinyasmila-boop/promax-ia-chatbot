@@ -19,12 +19,7 @@ with open("styles/main.css") as f:
 # SIDEBAR
 with st.sidebar:
 
-    st.markdown("""
-<div class='hero-badge'>
-    IA Enterprise • Analytics • Compensation Intelligence
-</div>
-""", unsafe_allow_html=True)
-    
+        
     selected = option_menu(
         menu_title=None,
         options=[
