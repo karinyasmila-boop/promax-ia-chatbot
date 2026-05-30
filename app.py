@@ -20,12 +20,11 @@ with open("styles/main.css") as f:
 with st.sidebar:
 
     st.markdown("""
-    <div class='logo-container'>
-        <h1>🤖 ADA PROMAX IA</h1>
-        <p>Asistente Inteligente RRHH</p>
-    </div>
-    """, unsafe_allow_html=True)
-
+<div class='hero-badge'>
+    IA Enterprise • Analytics • Compensation Intelligence
+</div>
+""", unsafe_allow_html=True)
+    
     selected = option_menu(
         menu_title=None,
         options=[
