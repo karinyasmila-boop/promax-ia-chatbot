@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 
-st.set_page_config(page_title="PROMAX IA", page_icon="🤖")
+st.set_page_config(page_title="ADA PROMAX IA", page_icon="🤖")
 
-st.title("PROMAX IA 🤖 Asistente RRHH - Compensaciones")
+st.title("ADA PROMAX IA 🤖 Asistente RRHH - Compensaciones")
 
 # Historial del chat
 if "messages" not in st.session_state:
