@@ -1,29 +1,38 @@
 import streamlit as st
 import requests
 
-st.title("PROMAX IA🤖 Ada Asitente de RRHH - Compensaciones")
+st.set_page_config(page_title="PROMAX IA", page_icon="🤖")
 
-employee_id = st.text_input("Ingresa tu código de empleado")
+st.title("PROMAX IA 🤖 Asistente RRHH - Compensaciones")
 
-consulta = st.selectbox(
-    "¿Qué deseas consultar?",
-    [
-        "1.- Bandas salariales",
-        "2.- Plan de carrera",
-        "3.- Diagnóstico Salarial"
-    ]
-)
+# Historial del chat
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-pregunta = st.text_area("Describe tu consulta")
+# Mostrar mensajes anteriores
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-if st.button("Enviar Consulta"):
+# Input del usuario
+prompt = st.chat_input("Escribe tu consulta...")
+
+if prompt:
+
+    # Mostrar mensaje usuario
+    st.chat_message("user").markdown(prompt)
+
+    st.session_state.messages.append({
+        "role": "user",
+        "content": prompt
+    })
 
     webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
 
     datos = {
-        "employee_id": employee_id,
-        "selected_option": consulta,
-        "text": pregunta
+        "employee_id": "PE0000012",
+        "selected_option": "Consulta general",
+        "text": prompt
     }
 
     try:
@@ -32,16 +41,18 @@ if st.button("Enviar Consulta"):
 
         if respuesta.status_code == 200:
 
-            st.success("Consulta procesada correctamente")
-
             resultado = respuesta.text
 
-            st.info(resultado)
+            with st.chat_message("assistant"):
+                st.markdown(resultado)
+
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": resultado
+            })
 
         else:
-
             st.error("Error conectando con Make")
 
     except Exception as e:
-
         st.error(f"Error: {e}")
