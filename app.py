@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-st.title("PROMAX IA 🤖 Compensaciones")
+st.title("PROMAX IA🤖 Ada Asitente de RRHH - Compensaciones")
 
 employee_id = st.text_input("Ingresa tu código de empleado")
 
@@ -32,12 +32,16 @@ if st.button("Enviar Consulta"):
 
         if respuesta.status_code == 200:
 
-    st.success("Consulta procesada correctamente")
+            st.success("Consulta procesada correctamente")
 
-    st.info(respuesta.text)
+            resultado = respuesta.text
 
-else:
-    st.error("Error conectando con Make")
+            st.info(resultado)
+
+        else:
+
+            st.error("Error conectando con Make")
 
     except Exception as e:
+
         st.error(f"Error: {e}")
