@@ -32,16 +32,12 @@ if st.button("Enviar Consulta"):
 
         if respuesta.status_code == 200:
 
-            st.success("Consulta procesada correctamente")
+    st.success("Consulta procesada correctamente")
 
-            data = respuesta.json()
+    st.info(respuesta.text)
 
-            resultado = data["respuesta"]
-
-            st.info(resultado)
-
-        else:
-            st.error("Error conectando con Make")
+else:
+    st.error("Error conectando con Make")
 
     except Exception as e:
         st.error(f"Error: {e}")
