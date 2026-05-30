@@ -46,19 +46,48 @@ with st.sidebar:
         default_index=0,
     )
 
-# HEADER
-col1, col2 = st.columns([2,1])
+# HERO SECTION
+col1, col2 = st.columns([2.3, 1])
 
 with col1:
 
     st.markdown("""
-    <div class='hero-section'>
-        <h1>ADA PROMAX IA</h1>
-        <h3>Tu copiloto inteligente de Recursos Humanos</h3>
+    <div class="hero-container">
 
-        <div class='hero-badge'>
-        IA Enterprise • Analytics • Compensation Intelligence
+        <div class="hero-label">
+            🤖 AI Powered HR Intelligence
         </div>
+
+        <h1 class="hero-title">
+            ADA PROMAX IA
+        </h1>
+
+        <p class="hero-subtitle">
+            Tu copiloto inteligente de Recursos Humanos
+        </p>
+
+        <p class="hero-description">
+            Plataforma IA especializada en compensaciones, 
+            bandas salariales, planes de carrera y analítica 
+            estratégica del talento.
+        </p>
+
+        <div class="hero-badges">
+
+            <span class="hero-badge">
+                ⚡ IA Enterprise
+            </span>
+
+            <span class="hero-badge">
+                📊 HR Analytics
+            </span>
+
+            <span class="hero-badge">
+                💰 Compensation Intelligence
+            </span>
+
+        </div>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -66,7 +95,7 @@ with col2:
 
     st.image(
         "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
-        width=250
+        width=260
     )
 
 # KPI ROW
