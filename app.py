@@ -24,6 +24,13 @@ with open("styles/main.css", encoding="utf-8") as f:
     )
 
 # =====================================================
+# SESSION STATE
+# =====================================================
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# =====================================================
 # SIDEBAR
 # =====================================================
 
@@ -33,20 +40,24 @@ with st.sidebar:
     <div class="logo-title">
         ADA PROMAX IA
     </div>
+    """, unsafe_allow_html=True)
 
+    st.markdown("""
     <div class="logo-sub">
         Asistente Inteligente RRHH
     </div>
+    """, unsafe_allow_html=True)
 
-    <br>
+    st.markdown("<br>", unsafe_allow_html=True)
 
+    st.markdown("""
     <div class="online-badge">
         <div class="online-dot"></div>
         En línea
     </div>
-
-    <br>
     """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     selected = option_menu(
         menu_title=None,
@@ -81,12 +92,14 @@ main_left, main_right = st.columns([4, 1.3])
 
 with main_left:
 
-    st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="hero-card">
+    """, unsafe_allow_html=True)
 
     hero_left, hero_right = st.columns([1, 2])
 
     # =================================================
-    # ROBOT
+    # ROBOT IMAGE
     # =================================================
 
     with hero_left:
@@ -97,7 +110,7 @@ with main_left:
         )
 
     # =================================================
-    # TEXT
+    # HERO TEXT
     # =================================================
 
     with hero_right:
@@ -135,12 +148,14 @@ with main_left:
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
     # =================================================
-    # FEATURE CARDS
+    # FEATURE TITLE
     # =================================================
 
     st.markdown("""
@@ -148,6 +163,10 @@ with main_left:
         ⚡ Sugerencias rápidas
     </h2>
     """, unsafe_allow_html=True)
+
+    # =================================================
+    # FEATURE CARDS
+    # =================================================
 
     c1, c2, c3 = st.columns(3)
 
@@ -261,13 +280,20 @@ with main_right:
     """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT
+# CHAT TITLE
 # =====================================================
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+st.markdown("""
+<h2 style="margin-bottom:20px;">
+💬 Conversación Inteligente
+</h2>
+""", unsafe_allow_html=True)
+
+# =====================================================
+# CHAT MESSAGES
+# =====================================================
 
 for msg in st.session_state.messages:
 
@@ -288,12 +314,16 @@ for msg in st.session_state.messages:
         """, unsafe_allow_html=True)
 
 # =====================================================
-# INPUT
+# CHAT INPUT
 # =====================================================
 
 prompt = st.chat_input(
     "Escribe tu consulta para ADA..."
 )
+
+# =====================================================
+# SEND MESSAGE
+# =====================================================
 
 if prompt:
 
@@ -329,4 +359,4 @@ if prompt:
 
         except Exception as e:
 
-            st.error(str(e))
+            st.error(f"Error: {str(e)}")
