@@ -681,3 +681,135 @@ if selected == "Configuración":
     st.toggle("Analítica RRHH", value=True)
 
     st.toggle("Logs Empresariales", value=True)
+    # =========================================================
+# SISTEMA DE SATISFACCIÓN IA
+# AGREGAR AL FINAL DEL CHAT
+# =========================================================
+
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+# =========================================================
+# FEEDBACK IA
+# =========================================================
+
+st.markdown("""
+<div style="
+background:#111827;
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.05);
+margin-top:20px;
+">
+<h3 style="margin-bottom:15px;">
+⭐ ¿Qué tan satisfactoria fue tu conversación con ADA?
+</h3>
+<p style="color:#9CA3AF;">
+Tu feedback ayuda a mejorar la experiencia de ADA IA.
+</p>
+</div>
+""", unsafe_allow_html=True)
+
+# =========================================================
+# ESTADO FEEDBACK
+# =========================================================
+
+if "feedback_sent" not in st.session_state:
+    st.session_state.feedback_sent = False
+
+if "selected_rating" not in st.session_state:
+    st.session_state.selected_rating = 0
+
+# =========================================================
+# ESTRELLAS
+# =========================================================
+
+star1, star2, star3, star4, star5 = st.columns(5)
+
+with star1:
+    if st.button("⭐", key="s1", use_container_width=True):
+        st.session_state.selected_rating = 1
+
+with star2:
+    if st.button("⭐⭐", key="s2", use_container_width=True):
+        st.session_state.selected_rating = 2
+
+with star3:
+    if st.button("⭐⭐⭐", key="s3", use_container_width=True):
+        st.session_state.selected_rating = 3
+
+with star4:
+    if st.button("⭐⭐⭐⭐", key="s4", use_container_width=True):
+        st.session_state.selected_rating = 4
+
+with star5:
+    if st.button("⭐⭐⭐⭐⭐", key="s5", use_container_width=True):
+        st.session_state.selected_rating = 5
+
+# =========================================================
+# MOSTRAR RATING
+# =========================================================
+
+if st.session_state.selected_rating > 0:
+
+    rating = st.session_state.selected_rating
+
+    mensajes = {
+        1: "😞 Lamentamos tu experiencia.",
+        2: "⚠️ ADA necesita mejorar.",
+        3: "🙂 Gracias por tu feedback.",
+        4: "🎉 Excelente experiencia.",
+        5: "🚀 ADA cumplió tus expectativas."
+    }
+
+    st.success(f"""
+Has calificado la conversación con:
+
+⭐ {rating}/5
+
+{mensajes[rating]}
+""")
+
+    comentario = st.text_area(
+        "Cuéntanos qué falló o qué mejorarías:",
+        placeholder="Ejemplo: ADA respondió lento, no entendió mi consulta..."
+    )
+
+    # =====================================================
+    # ENVIAR FEEDBACK A MAKE
+    # =====================================================
+
+    if st.button("📨 Enviar Feedback", use_container_width=True):
+
+        feedback_payload = {
+            "type": "feedback",
+            "employee_id": st.session_state.employee_id,
+            "conversation_id": st.session_state.conversation_id,
+            "rating": rating,
+            "comment": comentario,
+            "timestamp": str(datetime.now()),
+            "messages_count": len(st.session_state.messages)
+        }
+
+        try:
+
+            requests.post(
+                MAKE_WEBHOOK,
+                json=feedback_payload,
+                timeout=15
+            )
+
+            st.session_state.feedback_sent = True
+
+            st.success("""
+✅ Gracias por ayudarnos a mejorar ADA IA.
+Tu feedback fue registrado correctamente.
+""")
+
+        except Exception as e:
+
+            st.error(f"""
+❌ No se pudo enviar el feedback
+
+Detalle:
+{str(e)}
+""")
