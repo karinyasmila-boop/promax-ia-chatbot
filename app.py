@@ -997,10 +997,18 @@ Has calificado la conversación con:
         try:
 
             requests.post(
-                MAKE_WEBHOOK,
-                json=feedback_payload,
-                timeout=15
-            )
+    MAKE_WEBHOOK,
+    json=feedback_payload,
+    timeout=10
+)
+
+# ============================================
+# GUARDAR RATING LOCAL
+# ============================================
+
+st.session_state.ratings.append(
+    st.session_state.feedback
+)
 
             st.session_state.feedback_sent = True
 
