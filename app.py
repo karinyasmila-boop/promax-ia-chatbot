@@ -17,7 +17,7 @@ st.set_page_config(
 # LOAD CSS
 # =====================================================
 
-with open("styles/main.css") as f:
+with open("styles/main.css", encoding="utf-8") as f:
     st.markdown(
         f"<style>{f.read()}</style>",
         unsafe_allow_html=True
@@ -30,18 +30,18 @@ with open("styles/main.css") as f:
 with st.sidebar:
 
     st.markdown("""
-    <div class='logo-title'>
+    <div class="logo-title">
         ADA PROMAX IA
     </div>
 
-    <div class='logo-sub'>
+    <div class="logo-sub">
         Asistente Inteligente RRHH
     </div>
 
     <br>
 
-    <div class='online-badge'>
-        <div class='online-dot'></div>
+    <div class="online-badge">
+        <div class="online-dot"></div>
         En línea
     </div>
 
@@ -66,62 +66,62 @@ with st.sidebar:
             "clock-history",
             "gear"
         ],
-        default_index=0,
+        default_index=0
     )
 
 # =====================================================
 # MAIN LAYOUT
 # =====================================================
 
-left, right = st.columns([4, 1.25])
+main_left, main_right = st.columns([4, 1.3])
 
 # =====================================================
 # HERO SECTION
 # =====================================================
 
-with left:
+with main_left:
 
     st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
 
-    hero_left, hero_right = st.columns([1, 1.5])
+    hero_left, hero_right = st.columns([1, 2])
 
     # =================================================
-    # ROBOT IMAGE
+    # ROBOT
     # =================================================
 
     with hero_left:
 
         st.image(
-            "assets/Copilot_20260530_200709.png",
-            width=300
+            "assets/ada.png",
+            width=240
         )
 
     # =================================================
-    # HERO TEXT
+    # TEXT
     # =================================================
 
     with hero_right:
 
         st.markdown("""
-        <div class='hero-label'>
+        <div class="hero-label">
             AI Powered HR Intelligence
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div class='hero-title'>
+        <div class="hero-title">
             <span>ADA PROMAX IA</span>
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div class='hero-subtitle'>
+        <div class="hero-subtitle">
             Tu copiloto inteligente de Recursos Humanos
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div class='hero-description'>
+        <div class="hero-description">
             Plataforma IA especializada en compensaciones,
             bandas salariales, planes de carrera y analítica
             estratégica del talento.
@@ -129,7 +129,7 @@ with left:
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div class='message-box'>
+        <div class="message-box">
             Pregúntame sobre compensaciones,
             carrera o RRHH...
         </div>
@@ -144,7 +144,7 @@ with left:
     # =================================================
 
     st.markdown("""
-    <h2 style='margin-bottom:25px;'>
+    <h2 style="margin-bottom:25px;">
         ⚡ Sugerencias rápidas
     </h2>
     """, unsafe_allow_html=True)
@@ -154,13 +154,13 @@ with left:
     with c1:
 
         st.markdown("""
-        <div class='feature-card'>
+        <div class="feature-card">
 
-            <div class='feature-title'>
+            <div class="feature-title">
                 💰 Bandas Salariales
             </div>
 
-            <div class='feature-desc'>
+            <div class="feature-desc">
                 Información sobre estructura salarial
                 y compensaciones.
             </div>
@@ -171,15 +171,14 @@ with left:
     with c2:
 
         st.markdown("""
-        <div class='feature-card'>
+        <div class="feature-card">
 
-            <div class='feature-title'>
+            <div class="feature-title">
                 📈 Plan de Carrera
             </div>
 
-            <div class='feature-desc'>
-                Rutas de crecimiento y desarrollo
-                profesional.
+            <div class="feature-desc">
+                Rutas de crecimiento y desarrollo profesional.
             </div>
 
         </div>
@@ -188,15 +187,14 @@ with left:
     with c3:
 
         st.markdown("""
-        <div class='feature-card'>
+        <div class="feature-card">
 
-            <div class='feature-title'>
+            <div class="feature-title">
                 🤖 Diagnóstico IA
             </div>
 
-            <div class='feature-desc'>
-                Análisis inteligente
-                de compensaciones.
+            <div class="feature-desc">
+                Análisis inteligente de compensaciones.
             </div>
 
         </div>
@@ -206,28 +204,28 @@ with left:
 # RIGHT PANEL
 # =====================================================
 
-with right:
+with main_right:
 
     st.markdown("""
-    <div class='side-panel'>
+    <div class="side-panel">
 
-        <div class='side-title'>
+        <div class="side-title">
             Capacidades ADA IA
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             📊 Análisis inteligente de datos
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             🎯 Recomendaciones personalizadas
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             🌐 Información actualizada
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             🛟 Soporte 24/7
         </div>
 
@@ -237,25 +235,25 @@ with right:
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("""
-    <div class='side-panel'>
+    <div class="side-panel">
 
-        <div class='side-title'>
+        <div class="side-title">
             Estadísticas
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             📈 Consultas: 12,840
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             🎯 Precisión: 98%
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             ⚡ Tiempo promedio: 1.2s
         </div>
 
-        <div class='side-item'>
+        <div class="side-item">
             😊 Satisfacción: 99%
         </div>
 
@@ -263,7 +261,7 @@ with right:
     """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT HISTORY
+# CHAT
 # =====================================================
 
 st.markdown("<br>", unsafe_allow_html=True)
@@ -276,7 +274,7 @@ for msg in st.session_state.messages:
     if msg["role"] == "user":
 
         st.markdown(f"""
-        <div class='user-message'>
+        <div class="user-message">
             👤 {msg["content"]}
         </div>
         """, unsafe_allow_html=True)
@@ -284,13 +282,13 @@ for msg in st.session_state.messages:
     else:
 
         st.markdown(f"""
-        <div class='assistant-message'>
+        <div class="assistant-message">
             🤖 {msg["content"]}
         </div>
         """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT INPUT
+# INPUT
 # =====================================================
 
 prompt = st.chat_input(
