@@ -92,7 +92,7 @@ with main_left:
     with hero_left:
 
         st.image(
-            "assets/ada.png",
+            "assets/Copilot_20260530_200709.png",
             width=240
         )
 
