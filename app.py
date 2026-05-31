@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import requests
 from streamlit_option_menu import option_menu
@@ -996,4 +995,3 @@ if prompt:
         except Exception as e:
 
             st.error(f"Error: {e}")
-```
