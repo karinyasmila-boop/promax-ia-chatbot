@@ -556,13 +556,26 @@ for msg in st.session_state.messages:
     )
 
 # =========================================================
-# MENSAJE INICIAL
+# INPUT
 # =========================================================
 
-if len(st.session_state.messages) == 0:
+prompt = st.chat_input(
+    "Escribe tu consulta..."
+)
+
+# =========================================================
+# CHAT ENGINE
+# =========================================================
+
+if prompt:
+
+    # =============================================
+    # DETECCIÓN SALUDO
+    # =============================================
 
     saludo_words = [
         "hola",
+        "oye",
         "buenas",
         "hello",
         "hi",
@@ -574,12 +587,18 @@ if len(st.session_state.messages) == 0:
         "buenas tardes",
         "buenas noches"
     ]
+    
+    # =============================================
+    # SALUDO NATURAL
+    # =============================================
 
-    if any(
-        word in prompt.lower()
-        for word in saludo_words
+    if (
+        not st.session_state.authenticated
+        and any(
+            word in prompt.lower()
+            for word in saludo_words
+        )
     ):
-
         respuesta = """
 👋 ¡Hola! Soy ADA PROMAX IA, tu copiloto inteligente de Recursos Humanos.
 
@@ -606,10 +625,12 @@ Ejemplo:
 PE0000012
 """
 
-    st.session_state.messages.append({
-        "role":"assistant",
-        "content":respuesta
-    })
+     st.session_state.messages.append({
+            "role":"assistant",
+            "content":respuesta
+        })
+
+        st.rerun()
 
 # =========================================================
 # INPUT CHAT
