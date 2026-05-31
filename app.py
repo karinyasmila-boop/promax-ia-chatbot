@@ -95,7 +95,7 @@ with left:
 
     st.markdown(hero_html, unsafe_allow_html=True)
     st.image(
-        "assets/Copilot_20260530_202650.png",
+        "assets/Copilot_20260530_200709.png",
         width=380
     )
     # =====================================================
