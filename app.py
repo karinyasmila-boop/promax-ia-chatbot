@@ -65,23 +65,25 @@ left, right = st.columns([3.2, 1])
 
 with left:
 
-    st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
+    st.markdown("""
+    <div class='hero-card'>
+    """, unsafe_allow_html=True)
 
-    hero1, hero2 = st.columns([1, 1.4])
+    hero1, hero2 = st.columns([1, 1.5])
 
     # =================================================
-    # ROBOT IZQUIERDA
+    # ROBOT
     # =================================================
 
     with hero1:
 
         st.image(
             "assets/Copilot_20260530_200709.png",
-            width=320
+            width=280
         )
 
     # =================================================
-    # TEXTO DERECHA
+    # TEXTO HERO
     # =================================================
 
     with hero2:
@@ -92,7 +94,7 @@ with left:
         </div>
 
         <div class='hero-title'>
-            <span>ADA PROMAX IA</span>
+            ADA PROMAX IA
         </div>
 
         <div class='hero-subtitle'>
@@ -111,7 +113,9 @@ with left:
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
     # =====================================================
     # SUGERENCIAS RÁPIDAS — TARJETAS NEO
     # =====================================================
