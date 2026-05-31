@@ -1,6 +1,10 @@
 /* =========================================================
-FONTS
+ADA PROMAX IA — MAIN.CSS (Versión Final Integrada)
 ========================================================= */
+
+/* ------------------------------
+   FUENTE GLOBAL
+------------------------------ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 html, body, [class*="css"] {
@@ -8,29 +12,29 @@ html, body, [class*="css"] {
     scroll-behavior: smooth;
 }
 
-/* =========================================================
-GLOBAL BACKGROUND — NEO CYBERSPACE
-========================================================= */
+/* ------------------------------
+   FONDO ANIMADO NEO CYBERSPACE
+------------------------------ */
 .stApp {
     background:
         radial-gradient(circle at 10% 10%, rgba(124,58,237,0.35), transparent 40%),
         radial-gradient(circle at 90% 90%, rgba(6,182,212,0.35), transparent 40%),
-        linear-gradient(135deg, #020617, #0a0f1f 40%, #020617);
+        linear-gradient(135deg, #12092c, #031a33, #12092c);
+    background-size: 300% 300%;
+    animation: bgShift 18s ease infinite;
     color: white;
     overflow-x: hidden;
-    animation: bgFloat 18s ease-in-out infinite alternate;
 }
 
-@keyframes bgFloat {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+@keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-header, #MainMenu, footer { visibility: hidden; }
-
-/* =========================================================
-SCROLLBAR — NEON
-========================================================= */
+/* ------------------------------
+   SCROLLBAR — NEON
+------------------------------ */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #020617; }
 ::-webkit-scrollbar-thumb {
@@ -39,9 +43,9 @@ SCROLLBAR — NEON
     box-shadow: 0 0 12px #7C3AED;
 }
 
-/* =========================================================
-SIDEBAR — GLASS PANEL
-========================================================= */
+/* ------------------------------
+   SIDEBAR — GLASS PANEL
+------------------------------ */
 section[data-testid="stSidebar"] {
     background: rgba(10,15,35,0.55);
     border-right: 1px solid rgba(255,255,255,0.08);
@@ -49,32 +53,9 @@ section[data-testid="stSidebar"] {
     box-shadow: inset -4px 0 12px rgba(96,165,250,0.08);
 }
 
-/* =========================================================
-SIDEBAR MENU — HOLOGRAPHIC
-========================================================= */
-.nav-link {
-    border-radius: 18px !important;
-    margin-bottom: 10px !important;
-    padding: 12px 16px !important;
-    transition: all .35s cubic-bezier(.25,.8,.25,1);
-    background: rgba(255,255,255,0.02);
-}
-
-.nav-link:hover {
-    background: rgba(139,92,246,0.25) !important;
-    transform: translateX(8px) scale(1.02);
-    box-shadow: 0 0 18px rgba(139,92,246,0.35);
-}
-
-.nav-link-selected {
-    background: linear-gradient(135deg, #7C3AED, #3B82F6) !important;
-    border-radius: 18px !important;
-    box-shadow: 0 0 35px rgba(124,58,237,0.55);
-}
-
-/* =========================================================
-LOGO — HOLO TEXT
-========================================================= */
+/* ------------------------------
+   LOGO — HOLO TEXT
+------------------------------ */
 .logo-title {
     font-size: 36px;
     font-weight: 800;
@@ -91,20 +72,13 @@ LOGO — HOLO TEXT
     100% { text-shadow: 0 0 12px rgba(96,165,250,0.25); }
 }
 
-.logo-sub {
-    color: #CBD5E1;
-    font-size: 15px;
-    opacity: 0.85;
-}
-
-/* =========================================================
-ONLINE BADGE — PULSE
-========================================================= */
+/* ------------------------------
+   ONLINE BADGE — PULSE
+------------------------------ */
 .online-badge {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: fit-content;
     padding: 12px 18px;
     border-radius: 999px;
     background: rgba(255,255,255,0.05);
@@ -123,123 +97,53 @@ ONLINE BADGE — PULSE
 }
 
 @keyframes pulseOnline {
-    0% { transform: scale(1); opacity: 1; }
+    0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: .6; }
-    100% { transform: scale(1); opacity: 1; }
 }
 
-/* =========================================================
-HERO CARD — FUTURISTIC PANEL
-========================================================= */
-
+/* ------------------------------
+   HERO CARD — GLASS + ANIMACIÓN
+------------------------------ */
 .hero-card {
-
     position: relative;
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(10,15,35,0.96),
-        rgba(15,23,42,0.96)
-    );
-
-    border:
-    1px solid rgba(255,255,255,0.08);
-
+    backdrop-filter: blur(25px);
+    background: rgba(255,255,255,0.06);
     border-radius: 32px;
-
     padding: 55px;
-
-    overflow: hidden;
-
-    min-height: 420px;
-
-    backdrop-filter:
-    blur(22px) saturate(180%);
-
-    box-shadow:
-        0 0 60px rgba(59,130,246,0.14),
-        inset 0 0 40px rgba(255,255,255,0.03);
-
-    animation:
-    fadeInUp 1s ease forwards;
+    margin-top: -30px;
+    box-shadow: 0 0 60px rgba(59,130,246,0.14), inset 0 0 40px rgba(255,255,255,0.03);
+    animation: fadeSlide 1.2s ease forwards;
+    opacity: 0;
 }
 
-/* =========================================================
-GRID EFFECT
-========================================================= */
-
-.hero-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,0.03) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.03) 1px,
-            transparent 1px
-        );
-
-    background-size: 40px 40px;
-
-    opacity: 0.18;
-
-    pointer-events: none;
+.hero-card:hover {
+    transform: scale(1.015);
+    box-shadow: 0 0 60px rgba(147,197,253,0.45);
 }
 
-/* =========================================================
-GLOW ORBIT
-========================================================= */
-
-.hero-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 520px;
-
-    height: 520px;
-
-    border-radius: 50%;
-
-    background:
-    radial-gradient(
-        rgba(59,130,246,0.18),
-        transparent 70%
-    );
-
-    top: -220px;
-
-    left: -220px;
-
-    filter: blur(24px);
-
-    animation:
-    slowDrift 12s infinite alternate ease-in-out;
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slowDrift {
-
-    0% {
-        transform: translate(0,0);
-    }
-
-    100% {
-        transform: translate(40px,40px);
-    }
+/* ------------------------------
+   ROBOT — Flotación elegante
+------------------------------ */
+.hero-card img {
+    display: block;
+    margin: 0 auto;
+    animation: floatBot 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(147,197,253,0.45));
 }
-/* =========================================================
-HERO TEXT — FUTURISTA
-========================================================= */
+
+@keyframes floatBot {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* ------------------------------
+   TEXTOS HERO
+------------------------------ */
 .hero-label {
     padding: 10px 20px;
     border-radius: 999px;
@@ -250,19 +154,11 @@ HERO TEXT — FUTURISTA
     font-weight: 600;
     width: fit-content;
     backdrop-filter: blur(12px);
-    animation: fadeIn .8s ease;
-}
-
-.hero-title {
-    font-size: 82px !important;
-    font-weight: 800 !important;
-    line-height: 1.05;
-    margin-bottom: 18px;
-    letter-spacing: -2px;
-    animation: fadeInUp .9s ease;
 }
 
 .hero-title span {
+    font-size: 82px;
+    font-weight: 800;
     background: linear-gradient(90deg, #60A5FA, #818CF8, #C084FC);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -270,9 +166,8 @@ HERO TEXT — FUTURISTA
 }
 
 @keyframes glowPulse {
-    0% { text-shadow: 0 0 20px rgba(96,165,250,0.25); }
+    0%, 100% { text-shadow: 0 0 20px rgba(96,165,250,0.25); }
     50% { text-shadow: 0 0 45px rgba(167,139,250,0.55); }
-    100% { text-shadow: 0 0 20px rgba(96,165,250,0.25); }
 }
 
 .hero-subtitle {
@@ -280,7 +175,6 @@ HERO TEXT — FUTURISTA
     font-weight: 700;
     color: #A78BFA;
     margin-bottom: 24px;
-    animation: fadeInUp 1.1s ease;
 }
 
 .hero-description {
@@ -290,10 +184,11 @@ HERO TEXT — FUTURISTA
     max-width: 760px;
     margin-bottom: 35px;
     opacity: 0.9;
-    animation: fadeInUp 1.2s ease;
 }
 
-/* MESSAGE BOX — GLASS NEON */
+/* ------------------------------
+   MESSAGE BOX — GLASS NEON
+------------------------------ */
 .message-box {
     background: linear-gradient(90deg, rgba(124,58,237,0.35), rgba(59,130,246,0.18));
     border: 1px solid rgba(139,92,246,0.45);
@@ -302,15 +197,12 @@ HERO TEXT — FUTURISTA
     color: white;
     font-size: 18px;
     backdrop-filter: blur(18px);
-    box-shadow:
-        inset 0 0 25px rgba(255,255,255,0.06),
-        0 0 40px rgba(124,58,237,0.25);
-    animation: fadeInUp 1.3s ease;
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.06), 0 0 40px rgba(124,58,237,0.25);
 }
 
-/* =========================================================
-FEATURE CARDS — NEO PANELS
-========================================================= */
+/* ------------------------------
+   FEATURE CARDS — NEO PANELS
+------------------------------ */
 .feature-card {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
@@ -325,128 +217,10 @@ FEATURE CARDS — NEO PANELS
 .feature-card:hover {
     transform: translateY(-10px) scale(1.02);
     border: 1px solid #8B5CF6;
-    box-shadow:
-        0 0 35px rgba(139,92,246,0.35),
-        inset 0 0 25px rgba(255,255,255,0.06);
+    box-shadow: 0 0 35px rgba(139,92,246,0.35), inset 0 0 25px rgba(255,255,255,0.06);
 }
 
-.feature-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 16px;
-    margin-bottom: 12px;
-}
-
-.feature-desc {
-    color: #AAB4C8;
-    line-height: 1.7;
-}
-
-/* =========================================================
-RIGHT PANEL — GLASS MODULES
-========================================================= */
+/* ------------------------------
+   SIDE PANEL — GLASS MODULES
+------------------------------ */
 .side-panel {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 26px;
-    padding: 28px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(16px);
-    box-shadow: inset 0 0 20px rgba(255,255,255,0.04);
-}
-
-.side-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 22px;
-}
-
-.side-item {
-    margin-bottom: 18px;
-    color: #CBD5E1;
-    line-height: 1.6;
-}
-
-/* =========================================================
-CHAT — HOLO BUBBLES
-========================================================= */
-.user-message {
-    background: linear-gradient(135deg, #2563EB, #7C3AED);
-    padding: 18px 22px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    margin-left: 30%;
-    box-shadow: 0 0 25px rgba(124,58,237,0.35);
-    animation: fadeInUp .5s ease;
-}
-
-.assistant-message {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 18px 24px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    margin-right: 30%;
-    backdrop-filter: blur(16px);
-    animation: fadeInUp .5s ease;
-}
-
-/* =========================================================
-INPUT — NEON FIELD
-========================================================= */
-.stChatInput input {
-    background: rgba(15,23,42,0.92) !important;
-    border: 1px solid rgba(139,92,246,0.45) !important;
-    border-radius: 20px !important;
-    color: white !important;
-    padding-left: 20px !important;
-    height: 65px !important;
-    font-size: 16px !important;
-    box-shadow: 0 0 25px rgba(139,92,246,0.25);
-}
-
-/* =========================================================
-BUTTONS — NEO GLOW
-========================================================= */
-.stButton button {
-    border-radius: 16px !important;
-    background: linear-gradient(135deg, #7C3AED, #3B82F6) !important;
-    border: none !important;
-    color: white !important;
-    transition: all .3s ease;
-    box-shadow: 0 0 20px rgba(124,58,237,0.25);
-}
-
-.stButton button:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 0 35px rgba(124,58,237,0.45);
-}
-
-/* =========================================================
-ANIMATIONS
-========================================================= */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
-@media (max-width: 900px) {
-    .hero-title { font-size: 52px !important; }
-    .hero-card { padding: 32px; }
-    .user-message { margin-left: 5%; }
-    .assistant-message { margin-right: 5%; }
-}
-
-@media (max-width: 600px) {
-    .hero-title { font-size: 38px !important; }
-    .feature-card { padding: 22px; }
-    .message-box { font-size: 16px; }
-}
