@@ -94,11 +94,6 @@ with left:
     """
 
     st.markdown(hero_html, unsafe_allow_html=True)
-hero1, hero2 = st.columns([1.2, 1])
-
-with hero1:
-    st.markdown(hero_html, unsafe_allow_html=True)
-
 with hero2:
     st.image(
         "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
