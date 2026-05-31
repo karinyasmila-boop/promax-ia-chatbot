@@ -561,8 +561,6 @@ for msg in st.session_state.messages:
 
 if len(st.session_state.messages) == 0:
 
-else:
-
     saludo_words = [
         "hola",
         "buenas",
