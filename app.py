@@ -4,7 +4,7 @@ import requests
 from streamlit_option_menu import option_menu
 
 # =========================================================
-# CONFIG
+# PAGE CONFIG
 # =========================================================
 
 st.set_page_config(
@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# CSS ULTRA PRO
+# CUSTOM CSS
 # =========================================================
 
 st.markdown("""
@@ -28,7 +28,10 @@ FONTS
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html, body, [class*="css"] {
+
     font-family: 'Inter', sans-serif;
+
+    scroll-behavior: smooth;
 }
 
 /* =========================================================
@@ -38,11 +41,13 @@ GLOBAL
 .stApp {
 
     background:
-    radial-gradient(circle at top left, rgba(124,58,237,0.20), transparent 25%),
-    radial-gradient(circle at bottom right, rgba(6,182,212,0.20), transparent 25%),
+    radial-gradient(circle at top left, rgba(124,58,237,0.22), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(6,182,212,0.22), transparent 28%),
     #020617;
 
     color: white;
+
+    overflow-x: hidden;
 }
 
 header {
@@ -62,7 +67,13 @@ SCROLLBAR
 ========================================================= */
 
 ::-webkit-scrollbar {
+
     width: 10px;
+}
+
+::-webkit-scrollbar-track {
+
+    background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -89,11 +100,51 @@ section[data-testid="stSidebar"] {
         #091224
     );
 
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right:
+    1px solid rgba(255,255,255,0.06);
 }
 
 section[data-testid="stSidebar"] > div {
-    padding-top: 20px;
+
+    padding-top: 24px;
+}
+
+/* =========================================================
+SIDEBAR MENU
+========================================================= */
+
+.nav-link {
+
+    border-radius: 18px !important;
+
+    margin-bottom: 10px !important;
+
+    transition: all 0.3s ease !important;
+
+    padding: 10px 14px !important;
+}
+
+.nav-link:hover {
+
+    background:
+    rgba(139,92,246,0.14) !important;
+
+    transform: translateX(4px);
+}
+
+.nav-link-selected {
+
+    background:
+    linear-gradient(
+        135deg,
+        #7C3AED,
+        #3B82F6
+    ) !important;
+
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 0 25px rgba(124,58,237,0.35);
 }
 
 /* =========================================================
@@ -103,7 +154,10 @@ LOGO
 .logo-title {
 
     font-size: 34px;
+
     font-weight: 800;
+
+    margin-bottom: 5px;
 
     background: linear-gradient(
         90deg,
@@ -112,26 +166,32 @@ LOGO
     );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 
-    margin-bottom: 5px;
+    text-shadow:
+        0 0 25px rgba(96,165,250,0.18);
 }
 
 .logo-sub {
 
     color: #CBD5E1;
+
     font-size: 15px;
+
     margin-bottom: 25px;
 }
 
 /* =========================================================
-STATUS
+ONLINE BADGE
 ========================================================= */
 
 .online-badge {
 
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     width: fit-content;
@@ -140,16 +200,21 @@ STATUS
 
     border-radius: 999px;
 
-    background: rgba(255,255,255,0.04);
+    background:
+    rgba(255,255,255,0.04);
 
-    border: 1px solid rgba(255,255,255,0.08);
+    border:
+    1px solid rgba(255,255,255,0.08);
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
+
+    backdrop-filter: blur(14px);
 }
 
 .online-dot {
 
     width: 10px;
+
     height: 10px;
 
     border-radius: 50%;
@@ -157,11 +222,11 @@ STATUS
     background: #22C55E;
 
     box-shadow:
-        0 0 12px #22C55E;
+        0 0 14px #22C55E;
 }
 
 /* =========================================================
-HERO
+HERO CARD
 ========================================================= */
 
 .hero-card {
@@ -171,22 +236,25 @@ HERO
     background:
     linear-gradient(
         145deg,
-        rgba(10,15,35,0.95),
-        rgba(20,25,55,0.95)
+        rgba(10,15,35,0.94),
+        rgba(20,25,55,0.94)
     );
 
-    border: 1px solid rgba(255,255,255,0.06);
+    border:
+    1px solid rgba(255,255,255,0.06);
 
     border-radius: 32px;
 
-    padding: 45px;
+    padding: 50px;
 
     overflow: hidden;
 
-    min-height: 550px;
+    min-height: 580px;
 
     box-shadow:
-        0 0 60px rgba(59,130,246,0.12);
+        0 0 70px rgba(59,130,246,0.10);
+
+    backdrop-filter: blur(18px);
 }
 
 .hero-card::before {
@@ -203,12 +271,64 @@ HERO
 
     background-size: 40px 40px;
 
-    opacity: 0.25;
+    opacity: 0.20;
 
     pointer-events: none;
 }
 
+.hero-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+
+    height: 450px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(
+        rgba(59,130,246,0.20),
+        transparent 70%
+    );
+
+    top: -180px;
+
+    left: -180px;
+
+    z-index: 0;
+}
+
+/* =========================================================
+HERO IMAGE
+========================================================= */
+
+.hero-image {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 100%;
+}
+
+/* =========================================================
+HERO LABEL
+========================================================= */
+
 .hero-label {
+
+    position: relative;
+
+    z-index: 2;
 
     width: fit-content;
 
@@ -216,9 +336,11 @@ HERO
 
     border-radius: 999px;
 
-    background: rgba(124,58,237,0.15);
+    background:
+    rgba(124,58,237,0.15);
 
-    border: 1px solid rgba(124,58,237,0.35);
+    border:
+    1px solid rgba(124,58,237,0.35);
 
     color: #C4B5FD;
 
@@ -229,22 +351,31 @@ HERO
     margin-bottom: 24px;
 
     backdrop-filter: blur(12px);
+
+    animation: pulseGlow 4s infinite;
 }
+
+/* =========================================================
+HERO TITLE
+========================================================= */
 
 .hero-title {
 
-    font-size: 72px !important;
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 76px !important;
 
     font-weight: 800 !important;
 
-    line-height: 1.1;
+    line-height: 1.05;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+
+    letter-spacing: -2px;
 
     color: white;
-
-    text-shadow:
-        0 0 25px rgba(96,165,250,0.25);
 }
 
 .hero-title span {
@@ -257,32 +388,62 @@ HERO
     );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 25px rgba(96,165,250,0.22);
 }
+
+/* =========================================================
+HERO SUBTITLE
+========================================================= */
 
 .hero-subtitle {
 
-    font-size: 22px;
+    position: relative;
 
-    color: #A78BFA;
+    z-index: 2;
+
+    font-size: 22px;
 
     font-weight: 700;
 
-    margin-bottom: 25px;
+    color: #A78BFA;
+
+    margin-bottom: 24px;
 }
 
+/* =========================================================
+DESCRIPTION
+========================================================= */
+
 .hero-description {
+
+    position: relative;
+
+    z-index: 2;
 
     color: #CBD5E1;
 
     font-size: 18px;
 
-    line-height: 1.8;
+    line-height: 1.9;
+
+    max-width: 720px;
 
     margin-bottom: 35px;
 }
 
+/* =========================================================
+MESSAGE BOX
+========================================================= */
+
 .message-box {
+
+    position: relative;
+
+    z-index: 2;
 
     width: fit-content;
 
@@ -290,20 +451,26 @@ HERO
     linear-gradient(
         90deg,
         rgba(124,58,237,0.25),
-        rgba(59,130,246,0.15)
+        rgba(59,130,246,0.12)
     );
 
-    border: 1px solid rgba(139,92,246,0.35);
+    border:
+    1px solid rgba(139,92,246,0.35);
 
-    border-radius: 22px;
+    border-radius: 24px;
 
-    padding: 24px 30px;
+    padding: 24px 32px;
 
     color: white;
 
     font-size: 18px;
 
     margin-top: 20px;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 35px rgba(124,58,237,0.18);
 }
 
 /* =========================================================
@@ -312,29 +479,35 @@ FEATURE CARDS
 
 .feature-card {
 
-    background: rgba(255,255,255,0.03);
+    background:
+    rgba(255,255,255,0.03);
 
-    border: 1px solid rgba(255,255,255,0.06);
+    border:
+    1px solid rgba(255,255,255,0.06);
 
-    border-radius: 24px;
+    border-radius: 26px;
 
-    padding: 28px;
+    padding: 30px;
 
-    min-height: 180px;
+    min-height: 190px;
 
-    transition: 0.3s;
+    transition: 0.35s ease;
 
     cursor: pointer;
+
+    backdrop-filter: blur(16px);
 }
 
 .feature-card:hover {
 
-    transform: translateY(-5px);
+    transform:
+    translateY(-6px);
 
-    border: 1px solid #8B5CF6;
+    border:
+    1px solid #8B5CF6;
 
     box-shadow:
-        0 0 25px rgba(139,92,246,0.30);
+        0 0 30px rgba(139,92,246,0.28);
 }
 
 .feature-title {
@@ -343,7 +516,7 @@ FEATURE CARDS
 
     font-weight: 700;
 
-    margin-top: 15px;
+    margin-top: 16px;
 
     margin-bottom: 12px;
 }
@@ -352,11 +525,11 @@ FEATURE CARDS
 
     color: #94A3B8;
 
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* =========================================================
-RIGHT PANEL
+SIDE PANEL
 ========================================================= */
 
 .side-panel {
@@ -367,11 +540,13 @@ RIGHT PANEL
     border:
     1px solid rgba(255,255,255,0.06);
 
-    border-radius: 24px;
+    border-radius: 26px;
 
     padding: 28px;
 
     margin-bottom: 20px;
+
+    backdrop-filter: blur(16px);
 }
 
 .side-title {
@@ -380,7 +555,7 @@ RIGHT PANEL
 
     font-weight: 700;
 
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .side-item {
@@ -388,6 +563,8 @@ RIGHT PANEL
     margin-bottom: 18px;
 
     color: #CBD5E1;
+
+    line-height: 1.6;
 }
 
 /* =========================================================
@@ -403,13 +580,16 @@ CHAT
         #7C3AED
     );
 
-    padding: 16px 22px;
+    padding: 18px 22px;
 
     border-radius: 20px;
 
     margin-bottom: 15px;
 
     margin-left: 30%;
+
+    box-shadow:
+        0 0 25px rgba(124,58,237,0.25);
 }
 
 .assistant-message {
@@ -427,6 +607,8 @@ CHAT
     margin-bottom: 15px;
 
     margin-right: 30%;
+
+    backdrop-filter: blur(16px);
 }
 
 /* =========================================================
@@ -456,6 +638,28 @@ INPUT
 }
 
 /* =========================================================
+ANIMATION
+========================================================= */
+
+@keyframes pulseGlow {
+
+    0% {
+        box-shadow:
+        0 0 10px rgba(124,58,237,0.15);
+    }
+
+    50% {
+        box-shadow:
+        0 0 30px rgba(124,58,237,0.40);
+    }
+
+    100% {
+        box-shadow:
+        0 0 10px rgba(124,58,237,0.15);
+    }
+}
+
+/* =========================================================
 RESPONSIVE
 ========================================================= */
 
@@ -463,12 +667,22 @@ RESPONSIVE
 
     .hero-title {
 
-        font-size: 42px !important;
+        font-size: 46px !important;
     }
 
     .hero-card {
 
-        padding: 25px;
+        padding: 28px;
+    }
+
+    .user-message {
+
+        margin-left: 5%;
+    }
+
+    .assistant-message {
+
+        margin-right: 5%;
     }
 }
 
@@ -476,7 +690,7 @@ RESPONSIVE
 """, unsafe_allow_html=True)
 
 # =========================================================
-SIDEBAR
+# SIDEBAR
 # =========================================================
 
 with st.sidebar:
@@ -526,21 +740,40 @@ with st.sidebar:
 main_col, side_col = st.columns([3, 1])
 
 # =========================================================
-# HERO
+# HERO SECTION
 # =========================================================
 
 with main_col:
 
+    st.markdown(
+        "<div class='hero-card'>",
+        unsafe_allow_html=True
+    )
+
     hero_left, hero_right = st.columns([1, 1.4])
+
+    # LEFT IMAGE
 
     with hero_left:
 
-    st.image(
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-        width=350
-    ))
+        st.markdown(
+            "<div class='hero-image'>",
+            unsafe_allow_html=True
+        )
 
-    with right:
+        st.image(
+            "https://i.imgur.com/MtV8Z6v.png",
+            width=340
+        )
+
+        st.markdown(
+            "</div>",
+            unsafe_allow_html=True
+        )
+
+    # RIGHT CONTENT
+
+    with hero_right:
 
         st.markdown("""
         <div class='hero-label'>
@@ -568,58 +801,69 @@ with main_col:
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown(
+        "</div>",
+        unsafe_allow_html=True
+    )
 
-    st.markdown("<br>", unsafe_allow_html=True)
+# =========================================================
+# QUICK ACTIONS
+# =========================================================
 
-    st.markdown("## ⚡ Sugerencias rápidas")
+st.markdown("<br>", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns(3)
+st.markdown("## ⚡ Sugerencias rápidas")
 
-    with c1:
+c1, c2, c3 = st.columns(3)
 
-        st.markdown("""
-        <div class='feature-card'>
-            💰
-            <div class='feature-title'>
-                Bandas Salariales
-            </div>
+with c1:
 
-            <div class='feature-desc'>
-                Información sobre estructura salarial y compensaciones.
-            </div>
+    st.markdown("""
+    <div class='feature-card'>
+        💰
+
+        <div class='feature-title'>
+            Bandas Salariales
         </div>
-        """, unsafe_allow_html=True)
 
-    with c2:
-
-        st.markdown("""
-        <div class='feature-card'>
-            📈
-            <div class='feature-title'>
-                Plan de Carrera
-            </div>
-
-            <div class='feature-desc'>
-                Rutas de crecimiento y desarrollo profesional.
-            </div>
+        <div class='feature-desc'>
+            Información sobre estructura salarial
+            y compensaciones.
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
 
-    with c3:
+with c2:
 
-        st.markdown("""
-        <div class='feature-card'>
-            🧠
-            <div class='feature-title'>
-                Diagnóstico IA
-            </div>
+    st.markdown("""
+    <div class='feature-card'>
+        📈
 
-            <div class='feature-desc'>
-                Análisis inteligente de compensaciones.
-            </div>
+        <div class='feature-title'>
+            Plan de Carrera
         </div>
-        """, unsafe_allow_html=True)
+
+        <div class='feature-desc'>
+            Rutas de crecimiento y desarrollo profesional.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with c3:
+
+    st.markdown("""
+    <div class='feature-card'>
+        🧠
+
+        <div class='feature-title'>
+            Diagnóstico IA
+        </div>
+
+        <div class='feature-desc'>
+            Análisis inteligente de compensaciones.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # =========================================================
 # RIGHT PANEL
@@ -703,11 +947,11 @@ for msg in st.session_state.messages:
         """, unsafe_allow_html=True)
 
 # =========================================================
-# INPUT
+# CHAT INPUT
 # =========================================================
 
 prompt = st.chat_input(
-    "Escribe tu consulta..."
+    "Pregúntale a ADA sobre compensaciones, carrera o RRHH..."
 )
 
 if prompt:
@@ -734,16 +978,22 @@ if prompt:
                 json=payload
             )
 
-            result = response.text
+            if response.status_code == 200:
 
-            st.session_state.messages.append({
-                "role":"assistant",
-                "content":result
-            })
+                result = response.text
 
-            st.rerun()
+                st.session_state.messages.append({
+                    "role":"assistant",
+                    "content":result
+                })
+
+                st.rerun()
+
+            else:
+
+                st.error("Error conectando con Make")
 
         except Exception as e:
 
-            st.error(str(e))
+            st.error(f"Error: {e}")
 ```
