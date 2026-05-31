@@ -409,7 +409,7 @@ with main_left:
     with hero1:
         st.image(
             "assets/Copilot_20260530_200709.png",
-            width=250
+            width=550
         )
 
     with hero2:
