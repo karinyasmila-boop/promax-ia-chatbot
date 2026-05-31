@@ -153,7 +153,7 @@ with main_right:
     """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT CON FLUJO INTELIGENTE
+# CHAT CON FLUJO PERSONALIZADO
 # =====================================================
 st.markdown("<br><h2 class='section-title'>💬 Conversación Inteligente</h2>", unsafe_allow_html=True)
 
@@ -196,7 +196,6 @@ if prompt:
                     response = requests.post(webhook_url, json=payload)
                     result = response.json()  # Make debe devolver JSON estructurado
 
-                    # Validar si Make encontró al empleado
                     if not result or "nombre" not in result:
                         st.session_state.messages.append({
                             "role": "assistant",
@@ -215,12 +214,13 @@ if prompt:
                         area = result.get("area")
                         salario = result.get("salario")
                         experiencia = result.get("experiencia")
+                        competencias = result.get("competencias")
 
                         st.session_state.messages.append({
                             "role": "assistant",
                             "content": (
                                 f"✨ ¡Encantada de conocerte, **{nombre}**! Actualmente ocupas el puesto de **{puesto}** "
-                                f"en el área de **{area}**. Con base en tu perfil, puedo orientarte en:\n\n"
+                                f"en el área de **{area}**. Con base en tu perfil y experiencia, puedo ayudarte con:\n\n"
                                 "1️⃣ **Bandas Salariales y Compensación** — para conocer tu rango salarial y oportunidades de ajuste.\n"
                                 "2️⃣ **Plan de Carrera y Desarrollo** — para explorar tus rutas de crecimiento profesional.\n"
                                 "3️⃣ **Diagnóstico Inteligente de Compensación** — para analizar tu desempeño y proyección.\n\n"
@@ -252,7 +252,7 @@ if prompt:
                 response = requests.post(webhook_url, json=payload)
                 result = response.text
 
-                # Validación de seguridad: no permitir consultas de otros roles
+                # Validación de seguridad para salario
                 if "salario" in prompt.lower() and "otro" in prompt.lower():
                     st.session_state.messages.append({
                         "role": "assistant",
