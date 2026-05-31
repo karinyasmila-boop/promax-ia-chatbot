@@ -736,9 +736,7 @@ Detalle:
 
 if selected == "Historial":
 
-    st.markdown("""
-    # 📜 Historial Conversacional
-    """)
+    st.markdown("# 📜 Historial Conversacional")
 
     if len(st.session_state.messages) == 0:
 
@@ -746,64 +744,27 @@ if selected == "Historial":
 
     else:
 
-        for i, msg in enumerate(st.session_state.messages):
+        for msg in st.session_state.messages:
+
+            # =================================================
+            # MENSAJE ADA
+            # =================================================
 
             if msg["role"] == "assistant":
 
-                st.markdown(f"""
-                <div style="
-                    background:#111827;
-                    padding:18px;
-                    border-radius:16px;
-                    margin-bottom:15px;
-                    border:1px solid rgba(255,255,255,0.05);
-                ">
+                with st.chat_message("assistant"):
 
-                <div style="
-                    color:#60A5FA;
-                    font-weight:700;
-                    margin-bottom:10px;
-                ">
-                🤖 ADA PROMAX IA
-                </div>
+                    st.markdown(msg["content"])
 
-                <div style="
-                    color:white;
-                    line-height:1.8;
-                ">
-                {msg["content"]}
-                </div>
-
-                </div>
-                """, unsafe_allow_html=True)
+            # =================================================
+            # MENSAJE USER
+            # =================================================
 
             else:
 
-                st.markdown(f"""
-                <div style="
-                    background:#312E81;
-                    padding:18px;
-                    border-radius:16px;
-                    margin-bottom:15px;
-                ">
+                with st.chat_message("user"):
 
-                <div style="
-                    color:#C7D2FE;
-                    font-weight:700;
-                    margin-bottom:10px;
-                ">
-                👤 Usuario
-                </div>
-
-                <div style="
-                    color:white;
-                    line-height:1.8;
-                ">
-                {msg["content"]}
-                </div>
-
-                </div>
-                """, unsafe_allow_html=True)
+                    st.markdown(msg["content"])
 
 # =========================================================
 # CONFIG
