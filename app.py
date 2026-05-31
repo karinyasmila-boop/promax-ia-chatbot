@@ -5,12 +5,9 @@
 /* ------------------------------
    FONDO ANIMADO
 ------------------------------ */
-body {
-    background: linear-gradient(135deg, #12092c, #031a33, #12092c);
-    background-size: 300% 300%;
-    animation: bgShift 18s ease infinite;
-    font-family: 'Inter', sans-serif;
-}
+with open("styles/main.css", encoding="utf-8") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 @keyframes bgShift {
     0% { background-position: 0% 50%; }
