@@ -153,17 +153,15 @@ with main_right:
     """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT
+# CHAT CON FLUJO INTELIGENTE
 # =====================================================
 st.markdown("<br><h2 class='section-title'>💬 Conversación Inteligente</h2>", unsafe_allow_html=True)
 
-# Mostrar mensajes previos
 for msg in st.session_state.messages:
     role_class = "user-message" if msg["role"] == "user" else "assistant-message"
     icon = "👤" if msg["role"] == "user" else "🤖"
     st.markdown(f"<div class='{role_class}'>{icon} {msg['content']}</div>", unsafe_allow_html=True)
 
-# Input del chat
 prompt = st.chat_input("Escribe tu consulta para ADA...")
 
 # =====================================================
@@ -180,9 +178,8 @@ if "employee_id" not in st.session_state:
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Si ADA está esperando el código
+    # Si ADA espera el código
     if st.session_state.awaiting_id:
-        # Validar formato del código
         if prompt.strip().upper().startswith("PE"):
             st.session_state.employee_id = prompt.strip().upper()
             st.session_state.awaiting_id = False
@@ -197,25 +194,38 @@ if prompt:
             with st.spinner("Buscando datos del empleado..."):
                 try:
                     response = requests.post(webhook_url, json=payload)
-                    result = response.text
+                    result = response.json()  # Make debe devolver JSON estructurado
 
-                    # Si Make no encuentra al empleado
-                    if "no identificado" in result.lower() or len(result.strip()) < 10:
+                    # Validar si Make encontró al empleado
+                    if not result or "nombre" not in result:
                         st.session_state.messages.append({
                             "role": "assistant",
                             "content": (
-                                "😕 Parece que no he podido identificar al colaborador con el código proporcionado. "
+                                "😕 No he podido identificar al colaborador con el código proporcionado. "
                                 "Por favor, verifica tu identificador y vuelve a intentarlo. "
-                                "Si necesitas ayuda, puedo orientarte sobre las opciones disponibles:"
-                                "\n\n1️⃣ **Bandas Salariales y Compensación** — Información sobre estructura salarial y desarrollo económico."
-                                "\n2️⃣ **Plan de Carrera y Desarrollo** — Rutas de crecimiento profesional y habilidades a desarrollar."
-                                "\n3️⃣ **Diagnóstico Inteligente de Compensación** — Análisis de salario, desempeño y oportunidades de mejora."
+                                "Si necesitas orientación, puedo ayudarte con temas como:\n\n"
+                                "1️⃣ **Bandas Salariales y Compensación**\n"
+                                "2️⃣ **Plan de Carrera y Desarrollo**\n"
+                                "3️⃣ **Diagnóstico Inteligente de Compensación**"
                             )
                         })
                     else:
+                        nombre = result.get("nombre")
+                        puesto = result.get("puesto")
+                        area = result.get("area")
+                        salario = result.get("salario")
+                        experiencia = result.get("experiencia")
+
                         st.session_state.messages.append({
                             "role": "assistant",
-                            "content": f"Aquí tienes tu información 📊:\n\n{result}"
+                            "content": (
+                                f"✨ ¡Encantada de conocerte, **{nombre}**! Actualmente ocupas el puesto de **{puesto}** "
+                                f"en el área de **{area}**. Con base en tu perfil, puedo orientarte en:\n\n"
+                                "1️⃣ **Bandas Salariales y Compensación** — para conocer tu rango salarial y oportunidades de ajuste.\n"
+                                "2️⃣ **Plan de Carrera y Desarrollo** — para explorar tus rutas de crecimiento profesional.\n"
+                                "3️⃣ **Diagnóstico Inteligente de Compensación** — para analizar tu desempeño y proyección.\n\n"
+                                "¿Sobre cuál tema te gustaría que te ayude hoy?"
+                            )
                         })
                     st.rerun()
 
@@ -223,7 +233,6 @@ if prompt:
                     st.error(f"Error: {str(e)}")
 
         else:
-            # Si el usuario escribe algo que no parece código
             st.session_state.messages.append({
                 "role": "assistant",
                 "content": (
@@ -242,7 +251,19 @@ if prompt:
             try:
                 response = requests.post(webhook_url, json=payload)
                 result = response.text
-                st.session_state.messages.append({"role": "assistant", "content": result})
+
+                # Validación de seguridad: no permitir consultas de otros roles
+                if "salario" in prompt.lower() and "otro" in prompt.lower():
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "content": (
+                            "🚫 Por motivos de confidencialidad, no puedo mostrar información salarial de otros puestos o colaboradores. "
+                            "Solo puedo ofrecerte datos relacionados con tu propio rol o área."
+                        )
+                    })
+                else:
+                    st.session_state.messages.append({"role": "assistant", "content": result})
                 st.rerun()
+
             except Exception as e:
                 st.error(f"Error: {str(e)}")
