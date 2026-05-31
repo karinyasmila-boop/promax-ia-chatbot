@@ -100,6 +100,210 @@ section[data-testid="stSidebar"] {
     line-height:1.7;
 }
 
+# =========================================================
+# KPI SATISFACCIÓN PROMEDIO
+# AGREGAR DEBAJO DEL HERO
+# =========================================================
+
+# =========================================================
+# SATISFACCIÓN PROMEDIO
+# =========================================================
+
+if "ratings" not in st.session_state:
+    st.session_state.ratings = []
+
+# =========================================================
+# CALCULAR PROMEDIO
+# =========================================================
+
+if len(st.session_state.ratings) > 0:
+
+    promedio_satisfaccion = round(
+        sum(st.session_state.ratings)
+        / len(st.session_state.ratings),
+        1
+    )
+
+else:
+
+    promedio_satisfaccion = 0
+
+# =========================================================
+# CARD SUPERIOR
+# =========================================================
+
+sat1, sat2, sat3, sat4 = st.columns(4)
+
+with sat1:
+
+    st.markdown(f"""
+    <div style="
+    background:linear-gradient(135deg,#111827,#1E293B);
+    border-radius:22px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+    height:160px;
+    ">
+
+    <div style="
+    font-size:18px;
+    color:#CBD5E1;
+    margin-bottom:15px;
+    ">
+    ⭐ Satisfacción Promedio
+    </div>
+
+    <div style="
+    font-size:48px;
+    font-weight:800;
+    color:#FACC15;
+    ">
+    {promedio_satisfaccion}
+    </div>
+
+    <div style="
+    color:#94A3B8;
+    margin-top:10px;
+    ">
+    Promedio usuarios
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+with sat2:
+
+    total_feedbacks = len(st.session_state.ratings)
+
+    st.markdown(f"""
+    <div style="
+    background:linear-gradient(135deg,#111827,#1E293B);
+    border-radius:22px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+    height:160px;
+    ">
+
+    <div style="
+    font-size:18px;
+    color:#CBD5E1;
+    margin-bottom:15px;
+    ">
+    📨 Feedbacks
+    </div>
+
+    <div style="
+    font-size:48px;
+    font-weight:800;
+    color:#38BDF8;
+    ">
+    {total_feedbacks}
+    </div>
+
+    <div style="
+    color:#94A3B8;
+    margin-top:10px;
+    ">
+    Total recibidos
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+with sat3:
+
+    positivas = len([
+        r for r in st.session_state.ratings
+        if r >= 4
+    ])
+
+    st.markdown(f"""
+    <div style="
+    background:linear-gradient(135deg,#111827,#1E293B);
+    border-radius:22px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+    height:160px;
+    ">
+
+    <div style="
+    font-size:18px;
+    color:#CBD5E1;
+    margin-bottom:15px;
+    ">
+    😊 Positivas
+    </div>
+
+    <div style="
+    font-size:48px;
+    font-weight:800;
+    color:#22C55E;
+    ">
+    {positivas}
+    </div>
+
+    <div style="
+    color:#94A3B8;
+    margin-top:10px;
+    ">
+    Ratings ≥ 4
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+with sat4:
+
+    negativas = len([
+        r for r in st.session_state.ratings
+        if r <= 2
+    ])
+
+    st.markdown(f"""
+    <div style="
+    background:linear-gradient(135deg,#111827,#1E293B);
+    border-radius:22px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+    height:160px;
+    ">
+
+    <div style="
+    font-size:18px;
+    color:#CBD5E1;
+    margin-bottom:15px;
+    ">
+    😞 Negativas
+    </div>
+
+    <div style="
+    font-size:48px;
+    font-weight:800;
+    color:#EF4444;
+    ">
+    {negativas}
+    </div>
+
+    <div style="
+    color:#94A3B8;
+    margin-top:10px;
+    ">
+    Ratings ≤ 2
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+# =========================================================
+# ESPACIO
+# =========================================================
+
+st.markdown("<br>", unsafe_allow_html=True)
+
 /* FEATURE CARDS */
 
 .feature-card{
