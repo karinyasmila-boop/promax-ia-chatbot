@@ -167,57 +167,66 @@ with main_left:
     # =================================================
     # FEATURE CARDS
     # =================================================
+# =================================================
+# FEATURE CARDS
+# =================================================
 
-    c1, c2, c3 = st.columns(3)
+st.markdown("""
+<h2 style="margin-bottom:25px;">
+⚡ Sugerencias rápidas
+</h2>
+""", unsafe_allow_html=True)
 
-    with c1:
+c1, c2, c3 = st.columns(3)
 
-        st.markdown("""
-        <div class="feature-card">
+with c1:
 
-            <div class="feature-title">
-                💰 Bandas Salariales
-            </div>
+    st.markdown("""
+    <div class="feature-card">
 
-            <div class="feature-desc">
-                Información sobre estructura salarial
-                y compensaciones.
-            </div>
-
+        <div class="feature-title">
+            💰 Bandas Salariales
         </div>
-        """, unsafe_allow_html=True)
 
-    with c2:
-
-        st.markdown("""
-        <div class="feature-card">
-
-            <div class="feature-title">
-                📈 Plan de Carrera
-            </div>
-
-            <div class="feature-desc">
-                Rutas de crecimiento y desarrollo profesional.
-            </div>
-
+        <div class="feature-desc">
+            Información sobre estructura salarial
+            y compensaciones.
         </div>
-        """, unsafe_allow_html=True)
 
-    with c3:
+    </div>
+    """, unsafe_allow_html=True)
 
-        st.markdown("""
-        <div class="feature-card">
+with c2:
 
-            <div class="feature-title">
-                🤖 Diagnóstico IA
-            </div>
+    st.markdown("""
+    <div class="feature-card">
 
-            <div class="feature-desc">
-                Análisis inteligente de compensaciones.
-            </div>
-
+        <div class="feature-title">
+            📈 Plan de Carrera
         </div>
-        """, unsafe_allow_html=True)
+
+        <div class="feature-desc">
+            Rutas de crecimiento y desarrollo profesional.
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+with c3:
+
+    st.markdown("""
+    <div class="feature-card">
+
+        <div class="feature-title">
+            🤖 Diagnóstico IA
+        </div>
+
+        <div class="feature-desc">
+            Análisis inteligente de compensaciones.
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 # =====================================================
 # RIGHT PANEL
