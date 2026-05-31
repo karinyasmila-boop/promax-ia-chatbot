@@ -1,216 +1,185 @@
-/* =========================================================
-# ADA PROMAX IA - MAIN.CSS (Versión Premium 2030)
-   ========================================================= */
+import streamlit as st
+import requests
+from streamlit_option_menu import option_menu
 
-/* ------------------------------
-   FONDO ANIMADO
------------------------------- */
+# =====================================================
+# CONFIGURACIÓN GENERAL
+# =====================================================
+st.set_page_config(
+    page_title="ADA PROMAX IA",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# =====================================================
+# CARGA DE ESTILOS (CSS)
+# =====================================================
 with open("styles/main.css", encoding="utf-8") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+# =====================================================
+# ESTADO DE SESIÓN
+# =====================================================
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-@keyframes bgShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+# =====================================================
+# SIDEBAR
+# =====================================================
+with st.sidebar:
 
-/* ------------------------------
-   HERO CARD (Glass + Animación)
------------------------------- */
-.hero-card {
-    backdrop-filter: blur(25px);
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 22px;
-    padding: 25px 40px;
-    margin-top: -30px; /* 🔧 Corrige el espacio vacío superior */
-    box-shadow: 0 0 40px rgba(147, 197, 253, 0.25);
-    transition: all 0.4s ease;
-    animation: fadeSlide 1.2s ease forwards;
-    opacity: 0;
-}
+    st.markdown("""
+    <div class="logo-title">ADA PROMAX IA</div>
+    <div class="logo-sub">Asistente Inteligente RRHH</div>
+    <br>
+    <div class="online-badge">
+        <div class="online-dot"></div> En línea
+    </div>
+    <br>
+    """, unsafe_allow_html=True)
 
-.hero-card:hover {
-    transform: scale(1.015);
-    box-shadow: 0 0 60px rgba(147, 197, 253, 0.45);
-}
+    selected = option_menu(
+        menu_title=None,
+        options=[
+            "Inicio",
+            "Bandas Salariales",
+            "Plan de Carrera",
+            "Diagnóstico IA",
+            "Historial",
+            "Configuración"
+        ],
+        icons=[
+            "house",
+            "cash-stack",
+            "graph-up",
+            "cpu",
+            "clock-history",
+            "gear"
+        ],
+        default_index=0
+    )
 
-@keyframes fadeSlide {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+# =====================================================
+# LAYOUT PRINCIPAL
+# =====================================================
+main_left, main_right = st.columns([4, 1.3])
 
-/* ------------------------------
-   ROBOT — Flotación elegante
------------------------------- */
-.hero-card img {
-    display: block;
-    margin: 0 auto;
-    animation: floatBot 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 18px rgba(147,197,253,0.45));
-}
+# =====================================================
+# HERO SECTION
+# =====================================================
+with main_left:
 
-@keyframes floatBot {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
+    st.markdown('<div class="hero-card">', unsafe_allow_html=True)
 
-/* ------------------------------
-   TEXTOS HERO
------------------------------- */
-.hero-label {
-    font-size: 14px;
-    color: #a5b4fc;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
+    hero_left, hero_right = st.columns([1, 2])
 
-.hero-title span {
-    font-size: 50px;
-    font-weight: 800;
-    color: #d8ccff;
-    text-shadow: 0 0 25px rgba(147,197,253,0.45);
-    animation: glowPulse 4s ease-in-out infinite;
-}
+    # Imagen del robot
+    with hero_left:
+        st.image("assets/Copilot_20260530_200709.png", width=240)
 
-@keyframes glowPulse {
-    0%, 100% { text-shadow: 0 0 20px rgba(147,197,253,0.25); }
-    50% { text-shadow: 0 0 45px rgba(147,197,253,0.55); }
-}
+    # Textos del hero
+    with hero_right:
+        st.markdown("""
+        <div class="hero-label">AI Powered HR Intelligence</div>
+        <div class="hero-title"><span>ADA PROMAX IA</span></div>
+        <div class="hero-subtitle">Tu copiloto inteligente de Recursos Humanos</div>
+        <div class="hero-description">
+            Plataforma IA especializada en compensaciones,
+            bandas salariales, planes de carrera y analítica estratégica del talento.
+        </div>
+        <div class="message-box">
+            Pregúntame sobre compensaciones, carrera o RRHH...
+        </div>
+        """, unsafe_allow_html=True)
 
-.hero-subtitle {
-    font-size: 20px;
-    color: #e0e7ff;
-    margin-bottom: 10px;
-}
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 
-.hero-description {
-    font-size: 16px;
-    color: #cbd5e1;
-    max-width: 480px;
-    text-align: justify;
-}
+    # =================================================
+    # SUGERENCIAS RÁPIDAS
+    # =================================================
+    st.markdown("<h2 class='section-title'>⚡ Sugerencias rápidas</h2>", unsafe_allow_html=True)
 
-/* ------------------------------
-   MESSAGE BOX
------------------------------- */
-.message-box {
-    margin-top: 20px;
-    padding: 14px 22px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.08);
-    color: #e0e7ff;
-    transition: all 0.3s ease;
-}
+    c1, c2, c3 = st.columns(3)
 
-.message-box:hover {
-    background: rgba(147,197,253,0.18);
-    transform: translateY(-4px);
-}
+    with c1:
+        st.markdown("""
+        <div class="feature-card">
+            <div class="feature-title">💰 Bandas Salariales</div>
+            <div class="feature-desc">Información sobre estructura salarial y compensaciones.</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-/* ------------------------------
-   SECCIÓN — TÍTULOS
------------------------------- */
-.section-title {
-    color: #e2e8f0;
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    animation: fadeSlide 1.2s ease forwards;
-}
+    with c2:
+        st.markdown("""
+        <div class="feature-card">
+            <div class="feature-title">📈 Plan de Carrera</div>
+            <div class="feature-desc">Rutas de crecimiento y desarrollo profesional.</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-/* ------------------------------
-   FEATURE CARDS
------------------------------- */
-.feature-card {
-    backdrop-filter: blur(18px);
-    background: rgba(255,255,255,0.07);
-    border-radius: 18px;
-    padding: 25px;
-    text-align: center;
-    transition: all 0.35s ease;
-    cursor: pointer;
-    animation: fadeSlide 1.4s ease forwards;
-    opacity: 0;
-}
+    with c3:
+        st.markdown("""
+        <div class="feature-card">
+            <div class="feature-title">🤖 Diagnóstico IA</div>
+            <div class="feature-desc">Análisis inteligente de compensaciones.</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-.feature-card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 0 35px rgba(255,255,255,0.25);
-}
+# =====================================================
+# PANEL DERECHO
+# =====================================================
+with main_right:
 
-.feature-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #d8ccff;
-    margin-bottom: 10px;
-}
+    st.markdown("""
+    <div class="side-panel">
+        <div class="side-title">Capacidades ADA IA</div>
+        <div class="side-item">📊 Análisis inteligente de datos</div>
+        <div class="side-item">🎯 Recomendaciones personalizadas</div>
+        <div class="side-item">🌐 Información actualizada</div>
+        <div class="side-item">🛟 Soporte 24/7</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-.feature-desc {
-    font-size: 15px;
-    color: #cbd5e1;
-}
+    st.markdown("""
+    <div class="side-panel">
+        <div class="side-title">Estadísticas</div>
+        <div class="side-item">📈 Consultas: 12,840</div>
+        <div class="side-item">🎯 Precisión: 98%</div>
+        <div class="side-item">⚡ Tiempo promedio: 1.2s</div>
+        <div class="side-item">😊 Satisfacción: 99%</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-/* ------------------------------
-   SIDE PANELS
------------------------------- */
-.side-panel {
-    backdrop-filter: blur(18px);
-    background: rgba(255,255,255,0.06);
-    border-radius: 18px;
-    padding: 25px;
-    margin-bottom: 20px;
-    animation: fadeSlide 1.4s ease forwards;
-    opacity: 0;
-}
+# =====================================================
+# CHAT
+# =====================================================
+st.markdown("<br><h2 class='section-title'>💬 Conversación Inteligente</h2>", unsafe_allow_html=True)
 
-.side-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #d8ccff;
-    margin-bottom: 12px;
-}
+# Mostrar mensajes previos
+for msg in st.session_state.messages:
+    role_class = "user-message" if msg["role"] == "user" else "assistant-message"
+    icon = "👤" if msg["role"] == "user" else "🤖"
+    st.markdown(f"<div class='{role_class}'>{icon} {msg['content']}</div>", unsafe_allow_html=True)
 
-.side-item {
-    font-size: 15px;
-    color: #cbd5e1;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-}
+# Input del chat
+prompt = st.chat_input("Escribe tu consulta para ADA...")
 
-.side-item:hover {
-    transform: translateX(6px);
-    color: #ffffff;
-}
+# Enviar mensaje
+if prompt:
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
-/* ------------------------------
-   CHAT MESSAGES
------------------------------- */
-.user-message, .assistant-message {
-    border-radius: 12px;
-    padding: 12px 18px;
-    margin-bottom: 12px;
-    backdrop-filter: blur(12px);
-    animation: fadeSlide 0.6s ease forwards;
-    opacity: 0;
-}
+    webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
+    payload = {"employee_id": "PE0000012", "text": prompt}
 
-.user-message {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-}
+    with st.spinner("ADA está analizando..."):
+        try:
+            response = requests.post(webhook_url, json=payload)
+            result = response.text
 
-.assistant-message {
-    background: rgba(96,165,250,0.18);
-    color: #dbeafe;
-}
+            st.session_state.messages.append({"role": "assistant", "content": result})
+            st.rerun()
 
-/* ------------------------------
-   RESPONSIVE
------------------------------- */
-@media (max-width: 900px) {
-    .hero-title span { font-size: 38px; }
-    .hero-card { padding: 20px; }
-    .feature-card { padding: 20px; }
-}
+        except Exception as e:
+            st.error(f"Error: {str(e)}")
