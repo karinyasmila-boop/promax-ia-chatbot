@@ -146,175 +146,113 @@ negativas = len([
 
 sat1, sat2, sat3, sat4 = st.columns(4)
 
-# =========================================================
-# CARD 1
-# =========================================================
-
 with sat1:
 
     st.markdown(f"""
     <div style="
-        background:linear-gradient(135deg,#111827,#1E293B);
-        border-radius:22px;
+        background:#111827;
+        border-radius:20px;
         padding:25px;
-        border:1px solid rgba(255,255,255,0.05);
         text-align:center;
-        height:170px;
+        border:1px solid rgba(255,255,255,0.05);
     ">
-
-        <div style="
-            font-size:18px;
-            color:#CBD5E1;
-            margin-bottom:15px;
-        ">
+        <h3 style="color:white;">
             ⭐ Satisfacción
-        </div>
+        </h3>
 
-        <div style="
-            font-size:48px;
-            font-weight:800;
+        <h1 style="
             color:#FACC15;
+            font-size:52px;
         ">
             {promedio_satisfaccion}
-        </div>
+        </h1>
 
-        <div style="
-            color:#94A3B8;
-            margin-top:10px;
-        ">
+        <p style="color:#94A3B8;">
             Promedio General
-        </div>
-
+        </p>
     </div>
     """, unsafe_allow_html=True)
-
-# =========================================================
-# CARD 2
-# =========================================================
 
 with sat2:
 
     st.markdown(f"""
     <div style="
-        background:linear-gradient(135deg,#111827,#1E293B);
-        border-radius:22px;
+        background:#111827;
+        border-radius:20px;
         padding:25px;
-        border:1px solid rgba(255,255,255,0.05);
         text-align:center;
-        height:170px;
+        border:1px solid rgba(255,255,255,0.05);
     ">
-
-        <div style="
-            font-size:18px;
-            color:#CBD5E1;
-            margin-bottom:15px;
-        ">
+        <h3 style="color:white;">
             📨 Feedbacks
-        </div>
+        </h3>
 
-        <div style="
-            font-size:48px;
-            font-weight:800;
+        <h1 style="
             color:#38BDF8;
+            font-size:52px;
         ">
             {total_feedbacks}
-        </div>
+        </h1>
 
-        <div style="
-            color:#94A3B8;
-            margin-top:10px;
-        ">
+        <p style="color:#94A3B8;">
             Total Recibidos
-        </div>
-
+        </p>
     </div>
     """, unsafe_allow_html=True)
-
-# =========================================================
-# CARD 3
-# =========================================================
 
 with sat3:
 
     st.markdown(f"""
     <div style="
-        background:linear-gradient(135deg,#111827,#1E293B);
-        border-radius:22px;
+        background:#111827;
+        border-radius:20px;
         padding:25px;
-        border:1px solid rgba(255,255,255,0.05);
         text-align:center;
-        height:170px;
+        border:1px solid rgba(255,255,255,0.05);
     ">
-
-        <div style="
-            font-size:18px;
-            color:#CBD5E1;
-            margin-bottom:15px;
-        ">
+        <h3 style="color:white;">
             😊 Positivas
-        </div>
+        </h3>
 
-        <div style="
-            font-size:48px;
-            font-weight:800;
+        <h1 style="
             color:#22C55E;
+            font-size:52px;
         ">
             {positivas}
-        </div>
+        </h1>
 
-        <div style="
-            color:#94A3B8;
-            margin-top:10px;
-        ">
-            Ratings ≥ 4
-        </div>
-
+        <p style="color:#94A3B8;">
+            Rating ≥ 4
+        </p>
     </div>
     """, unsafe_allow_html=True)
-
-# =========================================================
-# CARD 4
-# =========================================================
 
 with sat4:
 
     st.markdown(f"""
     <div style="
-        background:linear-gradient(135deg,#111827,#1E293B);
-        border-radius:22px;
+        background:#111827;
+        border-radius:20px;
         padding:25px;
-        border:1px solid rgba(255,255,255,0.05);
         text-align:center;
-        height:170px;
+        border:1px solid rgba(255,255,255,0.05);
     ">
-
-        <div style="
-            font-size:18px;
-            color:#CBD5E1;
-            margin-bottom:15px;
-        ">
+        <h3 style="color:white;">
             😞 Negativas
-        </div>
+        </h3>
 
-        <div style="
-            font-size:48px;
-            font-weight:800;
+        <h1 style="
             color:#EF4444;
+            font-size:52px;
         ">
             {negativas}
-        </div>
+        </h1>
 
-        <div style="
-            color:#94A3B8;
-            margin-top:10px;
-        ">
-            Ratings ≤ 2
-        </div>
-
+        <p style="color:#94A3B8;">
+            Rating ≤ 2
+        </p>
     </div>
     """, unsafe_allow_html=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
 
 # =========================================================
 # ESPACIO
