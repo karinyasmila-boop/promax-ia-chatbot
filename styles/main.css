@@ -1,5 +1,5 @@
 /* =========================================================
-ADA PROMAX IA — MAIN.CSS (Versión Final Integrada)
+ADA PROMAX IA - MAIN.CSS (Versión Premium 2030)
 ========================================================= */
 
 /* ------------------------------
@@ -13,17 +13,12 @@ html, body, [class*="css"] {
 }
 
 /* ------------------------------
-   FONDO ANIMADO NEO CYBERSPACE
+   FONDO ANIMADO
 ------------------------------ */
-.stApp {
-    background:
-        radial-gradient(circle at 10% 10%, rgba(124,58,237,0.35), transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(6,182,212,0.35), transparent 40%),
-        linear-gradient(135deg, #12092c, #031a33, #12092c);
+body {
+    background: linear-gradient(135deg, #12092c, #031a33, #12092c);
     background-size: 300% 300%;
     animation: bgShift 18s ease infinite;
-    color: white;
-    overflow-x: hidden;
 }
 
 @keyframes bgShift {
@@ -33,92 +28,23 @@ html, body, [class*="css"] {
 }
 
 /* ------------------------------
-   SCROLLBAR — NEON
------------------------------- */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #020617; }
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(#9333EA, #3B82F6);
-    border-radius: 999px;
-    box-shadow: 0 0 12px #7C3AED;
-}
-
-/* ------------------------------
-   SIDEBAR — GLASS PANEL
------------------------------- */
-section[data-testid="stSidebar"] {
-    background: rgba(10,15,35,0.55);
-    border-right: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(18px) saturate(180%);
-    box-shadow: inset -4px 0 12px rgba(96,165,250,0.08);
-}
-
-/* ------------------------------
-   LOGO — HOLO TEXT
------------------------------- */
-.logo-title {
-    font-size: 36px;
-    font-weight: 800;
-    margin-bottom: 5px;
-    background: linear-gradient(90deg, #60A5FA, #A78BFA, #C084FC);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: holoGlow 4s ease-in-out infinite;
-}
-
-@keyframes holoGlow {
-    0% { text-shadow: 0 0 12px rgba(96,165,250,0.25); }
-    50% { text-shadow: 0 0 28px rgba(167,139,250,0.55); }
-    100% { text-shadow: 0 0 12px rgba(96,165,250,0.25); }
-}
-
-/* ------------------------------
-   ONLINE BADGE — PULSE
------------------------------- */
-.online-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.12);
-    backdrop-filter: blur(14px);
-    animation: fadeIn .8s ease;
-}
-
-.online-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #22C55E;
-    box-shadow: 0 0 18px #22C55E;
-    animation: pulseOnline 1.8s infinite;
-}
-
-@keyframes pulseOnline {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.4); opacity: .6; }
-}
-
-/* ------------------------------
-   HERO CARD — GLASS + ANIMACIÓN
+   HERO CARD (Glass + Animación)
 ------------------------------ */
 .hero-card {
-    position: relative;
     backdrop-filter: blur(25px);
-    background: rgba(255,255,255,0.06);
-    border-radius: 32px;
-    padding: 55px;
-    margin-top: -30px;
-    box-shadow: 0 0 60px rgba(59,130,246,0.14), inset 0 0 40px rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 22px;
+    padding: 25px 40px;
+    margin-top: -30px; /* Corrige el espacio vacío superior */
+    box-shadow: 0 0 40px rgba(147, 197, 253, 0.25);
+    transition: all 0.4s ease;
     animation: fadeSlide 1.2s ease forwards;
     opacity: 0;
 }
 
 .hero-card:hover {
     transform: scale(1.015);
-    box-shadow: 0 0 60px rgba(147,197,253,0.45);
+    box-shadow: 0 0 60px rgba(147, 197, 253, 0.45);
 }
 
 @keyframes fadeSlide {
@@ -145,82 +71,158 @@ section[data-testid="stSidebar"] {
    TEXTOS HERO
 ------------------------------ */
 .hero-label {
-    padding: 10px 20px;
-    border-radius: 999px;
-    background: rgba(124,58,237,0.25);
-    border: 1px solid rgba(124,58,237,0.45);
-    color: #C4B5FD;
     font-size: 14px;
-    font-weight: 600;
-    width: fit-content;
-    backdrop-filter: blur(12px);
+    color: #a5b4fc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
 .hero-title span {
-    font-size: 82px;
+    font-size: 50px;
     font-weight: 800;
-    background: linear-gradient(90deg, #60A5FA, #818CF8, #C084FC);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #d8ccff;
+    text-shadow: 0 0 25px rgba(147,197,253,0.45);
     animation: glowPulse 4s ease-in-out infinite;
 }
 
 @keyframes glowPulse {
-    0%, 100% { text-shadow: 0 0 20px rgba(96,165,250,0.25); }
-    50% { text-shadow: 0 0 45px rgba(167,139,250,0.55); }
+    0%, 100% { text-shadow: 0 0 20px rgba(147,197,253,0.25); }
+    50% { text-shadow: 0 0 45px rgba(147,197,253,0.55); }
 }
 
 .hero-subtitle {
-    font-size: 24px;
-    font-weight: 700;
-    color: #A78BFA;
-    margin-bottom: 24px;
+    font-size: 20px;
+    color: #e0e7ff;
+    margin-bottom: 10px;
 }
 
 .hero-description {
-    color: #E2E8F0;
-    font-size: 19px;
-    line-height: 1.9;
-    max-width: 760px;
-    margin-bottom: 35px;
-    opacity: 0.9;
+    font-size: 16px;
+    color: #cbd5e1;
+    max-width: 480px;
+    text-align: justify;
 }
 
 /* ------------------------------
-   MESSAGE BOX — GLASS NEON
+   MESSAGE BOX
 ------------------------------ */
 .message-box {
-    background: linear-gradient(90deg, rgba(124,58,237,0.35), rgba(59,130,246,0.18));
-    border: 1px solid rgba(139,92,246,0.45);
-    border-radius: 24px;
-    padding: 26px 34px;
-    color: white;
-    font-size: 18px;
-    backdrop-filter: blur(18px);
-    box-shadow: inset 0 0 25px rgba(255,255,255,0.06), 0 0 40px rgba(124,58,237,0.25);
+    margin-top: 20px;
+    padding: 14px 22px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    color: #e0e7ff;
+    transition: all 0.3s ease;
+}
+
+.message-box:hover {
+    background: rgba(147,197,253,0.18);
+    transform: translateY(-4px);
 }
 
 /* ------------------------------
-   FEATURE CARDS — NEO PANELS
+   SECCIÓN — TÍTULOS
+------------------------------ */
+.section-title {
+    color: #e2e8f0;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    animation: fadeSlide 1.2s ease forwards;
+}
+
+/* ------------------------------
+   FEATURE CARDS
 ------------------------------ */
 .feature-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 26px;
-    padding: 32px;
-    min-height: 200px;
-    transition: all .35s cubic-bezier(.25,.8,.25,1);
-    backdrop-filter: blur(16px);
-    box-shadow: inset 0 0 20px rgba(255,255,255,0.03);
+    backdrop-filter: blur(18px);
+    background: rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    animation: fadeSlide 1.4s ease forwards;
+    opacity: 0;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border: 1px solid #8B5CF6;
-    box-shadow: 0 0 35px rgba(139,92,246,0.35), inset 0 0 25px rgba(255,255,255,0.06);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 35px rgba(255,255,255,0.25);
+}
+
+.feature-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #d8ccff;
+    margin-bottom: 10px;
+}
+
+.feature-desc {
+    font-size: 15px;
+    color: #cbd5e1;
 }
 
 /* ------------------------------
-   SIDE PANEL — GLASS MODULES
+   SIDE PANELS
 ------------------------------ */
 .side-panel {
+    backdrop-filter: blur(18px);
+    background: rgba(255,255,255,0.06);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 20px;
+    animation: fadeSlide 1.4s ease forwards;
+    opacity: 0;
+}
+
+.side-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #d8ccff;
+    margin-bottom: 12px;
+}
+
+.side-item {
+    font-size: 15px;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.side-item:hover {
+    transform: translateX(6px);
+    color: #ffffff;
+}
+
+/* ------------------------------
+   CHAT MESSAGES
+------------------------------ */
+.user-message, .assistant-message {
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(12px);
+    animation: fadeSlide 0.6s ease forwards;
+    opacity: 0;
+}
+
+.user-message {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.assistant-message {
+    background: rgba(96,165,250,0.18);
+    color: #dbeafe;
+}
+
+/* ------------------------------
+   RESPONSIVE
+------------------------------ */
+@media (max-width: 900px) {
+    .hero-title span { font-size: 38px; }
+    .hero-card { padding: 20px; }
+    .feature-card { padding: 20px; }
+}
