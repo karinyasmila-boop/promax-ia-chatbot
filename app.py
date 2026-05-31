@@ -762,7 +762,7 @@ if selected == "Configuración":
     st.toggle("Analítica RRHH", value=True)
 
     st.toggle("Logs Empresariales", value=True)
-    # =========================================================
+# =========================================================
 # SISTEMA DE SATISFACCIÓN IA
 # AGREGAR AL FINAL DEL CHAT
 # =========================================================
@@ -854,50 +854,31 @@ Has calificado la conversación con:
         "Cuéntanos qué falló o qué mejorarías:",
         placeholder="Ejemplo: ADA respondió lento, no entendió mi consulta..."
     )
+# =====================================================
+# ENVIAR FEEDBACK A MAKE
+# =====================================================
 
-    # =====================================================
-    # ENVIAR FEEDBACK A MAKE
-    # =====================================================
-
-   if st.button(
-    "📨 Enviar Feedback",
-    use_container_width=True
-):
+if st.button("📨 Enviar Feedback", use_container_width=True):
 
     feedback_payload = {
-        "type":"feedback",
+        "type": "feedback",
         "employee_id": st.session_state.employee_id,
         "conversation_id": st.session_state.conversation_id,
-        "rating": st.session_state.feedback,
+        "rating": st.session_state.selected_rating,  # ← corregido
         "comment": comentario,
         "timestamp": str(datetime.now())
     }
 
     try:
-
-        requests.post(
-            MAKE_WEBHOOK,
-            json=feedback_payload,
-            timeout=10
-        )
+        requests.post(MAKE_WEBHOOK, json=feedback_payload, timeout=10)
 
         # =====================================
         # GUARDAR RATING LOCAL
         # =====================================
+        st.session_state.ratings.append(st.session_state.selected_rating)
 
-        st.session_state.ratings.append(
-            st.session_state.feedback
-        )
-
-        st.success("""
-✅ Gracias por ayudarnos a mejorar ADA IA.
-""")
+        st.success("✅ Gracias por ayudarnos a mejorar ADA IA.")
 
     except Exception as e:
+        st.error(f"❌ No se pudo enviar el feedback\n\nDetalle:\n{str(e)}")
 
-        st.error(f"""
-❌ No se pudo enviar el feedback
-
-Detalle:
-{str(e)}
-""")
