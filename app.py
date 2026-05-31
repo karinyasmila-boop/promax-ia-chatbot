@@ -166,20 +166,53 @@ for msg in st.session_state.messages:
 # Input del chat
 prompt = st.chat_input("Escribe tu consulta para ADA...")
 
-# Enviar mensaje
+# =====================================================
+# LÓGICA DE CONVERSACIÓN
+# =====================================================
+if "employee_id" not in st.session_state:
+    st.session_state.employee_id = None
+
 if prompt:
+    # Guardar mensaje del usuario
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
-    payload = {"employee_id": "PE0000012", "text": prompt}
+    # Si aún no tiene employee_id, ADA lo solicita
+    if st.session_state.employee_id is None:
+        st.session_state.employee_id = prompt.strip().upper()
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": f"Perfecto 👋, tu código de empleado es **{st.session_state.employee_id}**. Estoy consultando tu información..."
+        })
 
-    with st.spinner("ADA está analizando..."):
-        try:
-            response = requests.post(webhook_url, json=payload)
-            result = response.text
+        webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
+        payload = {"employee_id": st.session_state.employee_id}
 
-            st.session_state.messages.append({"role": "assistant", "content": result})
-            st.rerun()
+        with st.spinner("Buscando datos del empleado..."):
+            try:
+                response = requests.post(webhook_url, json=payload)
+                result = response.text
 
-        except Exception as e:
-            st.error(f"Error: {str(e)}")
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": f"Aquí tienes tu información 📊:\n\n{result}"
+                })
+                st.rerun()
+
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
+
+    else:
+        # Si ya tiene employee_id, continúa con consultas normales
+        webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
+        payload = {"employee_id": st.session_state.employee_id, "text": prompt}
+
+        with st.spinner("ADA está analizando..."):
+            try:
+                response = requests.post(webhook_url, json=payload)
+                result = response.text
+
+                st.session_state.messages.append({"role": "assistant", "content": result})
+                st.rerun()
+
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
