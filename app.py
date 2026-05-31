@@ -859,44 +859,43 @@ Has calificado la conversación con:
     # ENVIAR FEEDBACK A MAKE
     # =====================================================
 
-    if st.button("📨 Enviar Feedback", use_container_width=True):
+   if st.button(
+    "📨 Enviar Feedback",
+    use_container_width=True
+):
 
-        feedback_payload = {
-            "type": "feedback",
-            "employee_id": st.session_state.employee_id,
-            "conversation_id": st.session_state.conversation_id,
-            "rating": rating,
-            "comment": comentario,
-            "timestamp": str(datetime.now()),
-            "messages_count": len(st.session_state.messages)
-        }
+    feedback_payload = {
+        "type":"feedback",
+        "employee_id": st.session_state.employee_id,
+        "conversation_id": st.session_state.conversation_id,
+        "rating": st.session_state.feedback,
+        "comment": comentario,
+        "timestamp": str(datetime.now())
+    }
 
-        try:
+    try:
 
-            requests.post(
-    MAKE_WEBHOOK,
-    json=feedback_payload,
-    timeout=10
-)
+        requests.post(
+            MAKE_WEBHOOK,
+            json=feedback_payload,
+            timeout=10
+        )
 
-# ============================================
-# GUARDAR RATING LOCAL
-# ============================================
+        # =====================================
+        # GUARDAR RATING LOCAL
+        # =====================================
 
-st.session_state.ratings.append(
-    st.session_state.feedback
-)
+        st.session_state.ratings.append(
+            st.session_state.feedback
+        )
 
-            st.session_state.feedback_sent = True
-
-            st.success("""
+        st.success("""
 ✅ Gracias por ayudarnos a mejorar ADA IA.
-Tu feedback fue registrado correctamente.
 """)
 
-        except Exception as e:
+    except Exception as e:
 
-            st.error(f"""
+        st.error(f"""
 ❌ No se pudo enviar el feedback
 
 Detalle:
