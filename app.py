@@ -171,38 +171,70 @@ prompt = st.chat_input("Escribe tu consulta para ADA...")
 # =====================================================
 if "employee_id" not in st.session_state:
     st.session_state.employee_id = None
+    st.session_state.awaiting_id = True
+    st.session_state.messages.append({
+        "role": "assistant",
+        "content": "👋 ¡Hola! Soy **ADA PROMAX IA**, tu asistente de Recursos Humanos. Por favor, indícame tu **código de empleado** (por ejemplo: PE0000012) para comenzar."
+    })
 
 if prompt:
-    # Guardar mensaje del usuario
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Si aún no tiene employee_id, ADA lo solicita
-    if st.session_state.employee_id is None:
-        st.session_state.employee_id = prompt.strip().upper()
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": f"Perfecto 👋, tu código de empleado es **{st.session_state.employee_id}**. Estoy consultando tu información..."
-        })
+    # Si ADA está esperando el código
+    if st.session_state.awaiting_id:
+        # Validar formato del código
+        if prompt.strip().upper().startswith("PE"):
+            st.session_state.employee_id = prompt.strip().upper()
+            st.session_state.awaiting_id = False
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": f"Perfecto 👋, tu código de empleado es **{st.session_state.employee_id}**. Estoy consultando tu información..."
+            })
 
-        webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
-        payload = {"employee_id": st.session_state.employee_id}
+            webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
+            payload = {"employee_id": st.session_state.employee_id}
 
-        with st.spinner("Buscando datos del empleado..."):
-            try:
-                response = requests.post(webhook_url, json=payload)
-                result = response.text
+            with st.spinner("Buscando datos del empleado..."):
+                try:
+                    response = requests.post(webhook_url, json=payload)
+                    result = response.text
 
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "content": f"Aquí tienes tu información 📊:\n\n{result}"
-                })
-                st.rerun()
+                    # Si Make no encuentra al empleado
+                    if "no identificado" in result.lower() or len(result.strip()) < 10:
+                        st.session_state.messages.append({
+                            "role": "assistant",
+                            "content": (
+                                "😕 Parece que no he podido identificar al colaborador con el código proporcionado. "
+                                "Por favor, verifica tu identificador y vuelve a intentarlo. "
+                                "Si necesitas ayuda, puedo orientarte sobre las opciones disponibles:"
+                                "\n\n1️⃣ **Bandas Salariales y Compensación** — Información sobre estructura salarial y desarrollo económico."
+                                "\n2️⃣ **Plan de Carrera y Desarrollo** — Rutas de crecimiento profesional y habilidades a desarrollar."
+                                "\n3️⃣ **Diagnóstico Inteligente de Compensación** — Análisis de salario, desempeño y oportunidades de mejora."
+                            )
+                        })
+                    else:
+                        st.session_state.messages.append({
+                            "role": "assistant",
+                            "content": f"Aquí tienes tu información 📊:\n\n{result}"
+                        })
+                    st.rerun()
 
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
+                except Exception as e:
+                    st.error(f"Error: {str(e)}")
+
+        else:
+            # Si el usuario escribe algo que no parece código
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": (
+                    "😊 Gracias por tu saludo. Para comenzar, necesito tu **código de empleado** "
+                    "(por ejemplo: PE0000012). Una vez lo ingreses, podré mostrarte tu información personalizada."
+                )
+            })
+            st.rerun()
 
     else:
-        # Si ya tiene employee_id, continúa con consultas normales
+        # Si ya tiene employee_id, continuar con consultas normales
         webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
         payload = {"employee_id": st.session_state.employee_id, "text": prompt}
 
@@ -210,9 +242,7 @@ if prompt:
             try:
                 response = requests.post(webhook_url, json=payload)
                 result = response.text
-
                 st.session_state.messages.append({"role": "assistant", "content": result})
                 st.rerun()
-
             except Exception as e:
                 st.error(f"Error: {str(e)}")
