@@ -27,9 +27,7 @@ FONTS
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html, body, [class*="css"] {
-
     font-family: 'Inter', sans-serif;
-
     scroll-behavior: smooth;
 }
 
@@ -45,8 +43,6 @@ GLOBAL
     #020617;
 
     color: white;
-
-    overflow-x: hidden;
 }
 
 header {
@@ -66,12 +62,10 @@ SCROLLBAR
 ========================================================= */
 
 ::-webkit-scrollbar {
-
     width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-
     background: #020617;
 }
 
@@ -104,7 +98,6 @@ section[data-testid="stSidebar"] {
 }
 
 section[data-testid="stSidebar"] > div {
-
     padding-top: 24px;
 }
 
@@ -167,9 +160,6 @@ LOGO
     -webkit-background-clip: text;
 
     -webkit-text-fill-color: transparent;
-
-    text-shadow:
-        0 0 25px rgba(96,165,250,0.18);
 }
 
 .logo-sub {
@@ -230,8 +220,6 @@ HERO CARD
 
 .hero-card {
 
-    position: relative;
-
     background:
     linear-gradient(
         145deg,
@@ -244,11 +232,9 @@ HERO CARD
 
     border-radius: 32px;
 
-    padding: 50px;
+    padding: 40px;
 
-    overflow: hidden;
-
-    min-height: 580px;
+    min-height: 520px;
 
     box-shadow:
         0 0 70px rgba(59,130,246,0.10);
@@ -256,78 +242,11 @@ HERO CARD
     backdrop-filter: blur(18px);
 }
 
-.hero-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-
-    background-size: 40px 40px;
-
-    opacity: 0.20;
-
-    pointer-events: none;
-}
-
-.hero-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 450px;
-
-    height: 450px;
-
-    border-radius: 50%;
-
-    background:
-    radial-gradient(
-        rgba(59,130,246,0.20),
-        transparent 70%
-    );
-
-    top: -180px;
-
-    left: -180px;
-
-    z-index: 0;
-}
-
-/* =========================================================
-HERO IMAGE
-========================================================= */
-
-.hero-image {
-
-    position: relative;
-
-    z-index: 2;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    height: 100%;
-}
-
 /* =========================================================
 HERO LABEL
 ========================================================= */
 
 .hero-label {
-
-    position: relative;
-
-    z-index: 2;
 
     width: fit-content;
 
@@ -348,10 +267,6 @@ HERO LABEL
     font-weight: 600;
 
     margin-bottom: 24px;
-
-    backdrop-filter: blur(12px);
-
-    animation: pulseGlow 4s infinite;
 }
 
 /* =========================================================
@@ -360,19 +275,13 @@ HERO TITLE
 
 .hero-title {
 
-    position: relative;
-
-    z-index: 2;
-
-    font-size: 76px !important;
+    font-size: 68px !important;
 
     font-weight: 800 !important;
 
-    line-height: 1.05;
+    line-height: 1.1;
 
     margin-bottom: 18px;
-
-    letter-spacing: -2px;
 
     color: white;
 }
@@ -389,20 +298,13 @@ HERO TITLE
     -webkit-background-clip: text;
 
     -webkit-text-fill-color: transparent;
-
-    text-shadow:
-        0 0 25px rgba(96,165,250,0.22);
 }
 
 /* =========================================================
-HERO SUBTITLE
+SUBTITLE
 ========================================================= */
 
 .hero-subtitle {
-
-    position: relative;
-
-    z-index: 2;
 
     font-size: 22px;
 
@@ -419,17 +321,11 @@ DESCRIPTION
 
 .hero-description {
 
-    position: relative;
-
-    z-index: 2;
-
     color: #CBD5E1;
 
     font-size: 18px;
 
-    line-height: 1.9;
-
-    max-width: 720px;
+    line-height: 1.8;
 
     margin-bottom: 35px;
 }
@@ -439,12 +335,6 @@ MESSAGE BOX
 ========================================================= */
 
 .message-box {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: fit-content;
 
     background:
     linear-gradient(
@@ -465,11 +355,6 @@ MESSAGE BOX
     font-size: 18px;
 
     margin-top: 20px;
-
-    backdrop-filter: blur(18px);
-
-    box-shadow:
-        0 0 35px rgba(124,58,237,0.18);
 }
 
 /* =========================================================
@@ -493,8 +378,6 @@ FEATURE CARDS
     transition: 0.35s ease;
 
     cursor: pointer;
-
-    backdrop-filter: blur(16px);
 }
 
 .feature-card:hover {
@@ -531,61 +414,37 @@ FEATURE CARDS
 SIDE PANEL
 ========================================================= */
 
-with side_col:
+.side-panel {
 
-    st.markdown(
-        """
-        <div class='side-panel'>
+    background:
+    rgba(255,255,255,0.03);
 
-            <div class='side-title'>
-                Capacidades ADA IA
-            </div>
+    border:
+    1px solid rgba(255,255,255,0.06);
 
-            <div class='side-item'>
-                📊 Análisis inteligente de datos
-            </div>
+    border-radius: 26px;
 
-            <div class='side-item'>
-                🎯 Recomendaciones personalizadas
-            </div>
+    padding: 28px;
 
-            <div class='side-item'>
-                🌐 Información actualizada
-            </div>
+    margin-bottom: 20px;
+}
 
-            <div class='side-item'>
-                ⏰ Soporte 24/7
-            </div>
+.side-title {
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    font-size: 22px;
 
-    st.markdown(
-        """
-        <div class='side-panel'>
+    font-weight: 700;
 
-            <div class='side-title'>
-                Estadísticas
-            </div>
+    margin-bottom: 22px;
+}
 
-            <div class='side-item'>
-                📈 Precisión: 96%
-            </div>
+.side-item {
 
-            <div class='side-item'>
-                ⚡ Tiempo respuesta: 1.2s
-            </div>
+    margin-bottom: 18px;
 
-            <div class='side-item'>
-                😊 Satisfacción: 98%
-            </div>
+    color: #CBD5E1;
+}
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 /* =========================================================
 CHAT
 ========================================================= */
@@ -606,9 +465,6 @@ CHAT
     margin-bottom: 15px;
 
     margin-left: 30%;
-
-    box-shadow:
-        0 0 25px rgba(124,58,237,0.25);
 }
 
 .assistant-message {
@@ -626,8 +482,6 @@ CHAT
     margin-bottom: 15px;
 
     margin-right: 30%;
-
-    backdrop-filter: blur(16px);
 }
 
 /* =========================================================
@@ -651,31 +505,6 @@ INPUT
     height: 65px !important;
 
     font-size: 16px !important;
-
-    box-shadow:
-        0 0 25px rgba(139,92,246,0.15);
-}
-
-/* =========================================================
-ANIMATION
-========================================================= */
-
-@keyframes pulseGlow {
-
-    0% {
-        box-shadow:
-        0 0 10px rgba(124,58,237,0.15);
-    }
-
-    50% {
-        box-shadow:
-        0 0 30px rgba(124,58,237,0.40);
-    }
-
-    100% {
-        box-shadow:
-        0 0 10px rgba(124,58,237,0.15);
-    }
 }
 
 /* =========================================================
@@ -685,22 +514,18 @@ RESPONSIVE
 @media (max-width: 900px) {
 
     .hero-title {
-
-        font-size: 46px !important;
+        font-size: 42px !important;
     }
 
     .hero-card {
-
         padding: 28px;
     }
 
     .user-message {
-
         margin-left: 5%;
     }
 
     .assistant-message {
-
         margin-right: 5%;
     }
 }
@@ -756,39 +581,26 @@ with st.sidebar:
 # MAIN LAYOUT
 # =========================================================
 
-main_col, side_col = st.columns([3, 1])
+main_col, side_col = st.columns([3,1])
 
-```python
 # =========================================================
-# HERO SECTION
+# HERO
 # =========================================================
 
 with main_col:
 
-    hero_left, hero_right = st.columns([1, 1.4])
-
-    # =====================================================
-    # LEFT IMAGE
-    # =====================================================
+    hero_left, hero_right = st.columns([1,1.4])
 
     with hero_left:
 
-        st.markdown("""
-        <div class='hero-card'>
-        """, unsafe_allow_html=True)
+        st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
 
         st.image(
             "https://images.unsplash.com/photo-1677442136019-21780ecad995",
             width=340
         )
 
-        st.markdown("""
-        </div>
-        """, unsafe_allow_html=True)
-
-    # =====================================================
-    # RIGHT CONTENT
-    # =====================================================
+        st.markdown("</div>", unsafe_allow_html=True)
 
     with hero_right:
 
@@ -809,14 +621,14 @@ with main_col:
 
             <div class='hero-description'>
                 Estoy aquí para ayudarte con información
-                especializada en compensaciones, desarrollo
-                profesional y análisis estratégico del talento.
+                especializada en compensaciones,
+                desarrollo profesional y análisis
+                estratégico del talento.
             </div>
 
             <div class='message-box'>
                 Puedes preguntarme sobre bandas salariales,
-                planes de carrera, análisis de compensación
-                y mucho más...
+                planes de carrera y compensaciones.
             </div>
 
         </div>
@@ -861,7 +673,7 @@ with c2:
         </div>
 
         <div class='feature-desc'>
-            Rutas de crecimiento y desarrollo profesional.
+            Desarrollo profesional y crecimiento.
         </div>
 
     </div>
