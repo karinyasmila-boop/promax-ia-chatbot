@@ -13,18 +13,20 @@ st.set_page_config(
 )
 
 # =====================================================
-# CSS GLOBAL
+# CARGAR CSS FUTURISTA
 # =====================================================
 with open("styles/main.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # =====================================================
-# SIDEBAR
+# SIDEBAR — PANEL HOLOGRÁFICO
 # =====================================================
 with st.sidebar:
+
     st.markdown("""
     <div class='logo-title'>ADA PROMAX IA</div>
     <div class='logo-sub'>Asistente Inteligente RRHH</div>
+
     <div class='online-badge'>
         <div class='online-dot'></div>
         <span>En línea</span>
@@ -53,31 +55,48 @@ with st.sidebar:
     )
 
 # =====================================================
-# MAIN LAYOUT
+# LAYOUT PRINCIPAL
 # =====================================================
-left, right = st.columns([3, 1])
+left, right = st.columns([3.2, 1])
 
 # =====================================================
-# HERO PRINCIPAL
+# HERO FUTURISTA
 # =====================================================
 with left:
+
     st.markdown("""
     <div class='hero-card'>
+
         <div class='hero-label'>AI Powered HR Intelligence</div>
-        <div class='hero-title'><span>ADA PROMAX IA</span></div>
-        <div class='hero-subtitle'>Tu copiloto inteligente de Recursos Humanos</div>
+
+        <div class='hero-title'>
+            <span>ADA PROMAX IA</span>
+        </div>
+
+        <div class='hero-subtitle'>
+            Tu copiloto inteligente de Recursos Humanos
+        </div>
+
         <div class='hero-description'>
-            Plataforma IA especializada en compensaciones, bandas salariales, planes de carrera y analítica estratégica del talento.
+            Plataforma IA especializada en compensaciones, bandas salariales,
+            planes de carrera y analítica estratégica del talento. Diseñada para
+            potenciar la toma de decisiones en RRHH con precisión y velocidad.
         </div>
+
         <div class='message-box'>
-            Pregúntale a ADA sobre compensaciones, carrera o RRHH...
+            Pregúntame sobre compensaciones, carrera o RRHH...
         </div>
+
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
+    # =====================================================
+    # SUGERENCIAS RÁPIDAS — TARJETAS NEO
+    # =====================================================
     st.markdown("## ⚡ Sugerencias rápidas")
+
     f1, f2, f3 = st.columns(3)
 
     with f1:
@@ -85,7 +104,9 @@ with left:
         <div class='feature-card'>
             <div style='font-size:32px;'>💰</div>
             <div class='feature-title'>Bandas Salariales</div>
-            <div class='feature-desc'>Información sobre estructura salarial y compensaciones.</div>
+            <div class='feature-desc'>
+                Consulta estructuras salariales y rangos competitivos.
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -94,7 +115,9 @@ with left:
         <div class='feature-card'>
             <div style='font-size:32px;'>📈</div>
             <div class='feature-title'>Plan de Carrera</div>
-            <div class='feature-desc'>Desarrollo profesional y crecimiento.</div>
+            <div class='feature-desc'>
+                Diseña rutas de crecimiento profesional.
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -103,14 +126,17 @@ with left:
         <div class='feature-card'>
             <div style='font-size:32px;'>🧠</div>
             <div class='feature-title'>Diagnóstico IA</div>
-            <div class='feature-desc'>Análisis inteligente de compensaciones.</div>
+            <div class='feature-desc'>
+                Análisis inteligente de compensaciones.
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
 # =====================================================
-# PANEL DERECHO
+# PANEL DERECHO — MÓDULOS HOLOGRÁFICOS
 # =====================================================
 with right:
+
     st.markdown("""
     <div class='side-panel'>
         <div class='side-title'>Capacidades ADA IA</div>
@@ -132,34 +158,48 @@ with right:
     """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT
+# CHAT — BURBUJAS NEON
 # =====================================================
 st.markdown("<br>", unsafe_allow_html=True)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Mostrar historial
 for msg in st.session_state.messages:
     if msg["role"] == "user":
         st.markdown(f"<div class='user-message'>👤 {msg['content']}</div>", unsafe_allow_html=True)
     else:
         st.markdown(f"<div class='assistant-message'>🤖 {msg['content']}</div>", unsafe_allow_html=True)
 
-prompt = st.chat_input("Pregúntale a ADA sobre compensaciones, carrera o RRHH...")
+# =====================================================
+# INPUT DEL CHAT
+# =====================================================
+prompt = st.chat_input("Escribe tu consulta para ADA...")
 
 if prompt:
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
-    payload = {"employee_id": "PE0000012", "selected_option": "Consulta General", "text": prompt}
 
-    with st.spinner("ADA está analizando..."):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    webhook_url = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
+
+    payload = {
+        "employee_id": "PE0000012",
+        "selected_option": "Consulta General",
+        "text": prompt
+    }
+
+    with st.spinner("ADA está analizando tu consulta..."):
+
         try:
             response = requests.post(webhook_url, json=payload)
+
             if response.status_code == 200:
                 result = response.text
                 st.session_state.messages.append({"role": "assistant", "content": result})
                 st.rerun()
             else:
                 st.error("Error conectando con Make")
+
         except Exception as e:
             st.error(f"Error: {e}")
