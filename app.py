@@ -73,22 +73,20 @@ with st.sidebar:
 # MAIN LAYOUT
 # =====================================================
 
-left, right = st.columns([4, 1.3])
+left, right = st.columns([4, 1.25])
 
 # =====================================================
-# HERO
+# HERO SECTION
 # =====================================================
 
 with left:
 
-    st.markdown("""
-    <div class='hero-card'>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
 
     hero_left, hero_right = st.columns([1, 1.5])
 
     # =================================================
-    # ROBOT
+    # ROBOT IMAGE
     # =================================================
 
     with hero_left:
@@ -108,23 +106,29 @@ with left:
         <div class='hero-label'>
             AI Powered HR Intelligence
         </div>
+        """, unsafe_allow_html=True)
 
-        <br>
-
+        st.markdown("""
         <div class='hero-title'>
             <span>ADA PROMAX IA</span>
         </div>
+        """, unsafe_allow_html=True)
 
+        st.markdown("""
         <div class='hero-subtitle'>
             Tu copiloto inteligente de Recursos Humanos
         </div>
+        """, unsafe_allow_html=True)
 
+        st.markdown("""
         <div class='hero-description'>
             Plataforma IA especializada en compensaciones,
             bandas salariales, planes de carrera y analítica
             estratégica del talento.
         </div>
+        """, unsafe_allow_html=True)
 
+        st.markdown("""
         <div class='message-box'>
             Pregúntame sobre compensaciones,
             carrera o RRHH...
@@ -133,13 +137,17 @@ with left:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 
     # =================================================
     # FEATURE CARDS
     # =================================================
 
-    st.markdown("## ⚡ Sugerencias rápidas")
+    st.markdown("""
+    <h2 style='margin-bottom:25px;'>
+        ⚡ Sugerencias rápidas
+    </h2>
+    """, unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns(3)
 
@@ -153,7 +161,8 @@ with left:
             </div>
 
             <div class='feature-desc'>
-                Información sobre estructura salarial y compensaciones.
+                Información sobre estructura salarial
+                y compensaciones.
             </div>
 
         </div>
@@ -169,7 +178,8 @@ with left:
             </div>
 
             <div class='feature-desc'>
-                Rutas de crecimiento y desarrollo profesional.
+                Rutas de crecimiento y desarrollo
+                profesional.
             </div>
 
         </div>
@@ -185,7 +195,8 @@ with left:
             </div>
 
             <div class='feature-desc'>
-                Análisis inteligente de compensaciones.
+                Análisis inteligente
+                de compensaciones.
             </div>
 
         </div>
@@ -223,6 +234,8 @@ with right:
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("<br>", unsafe_allow_html=True)
+
     st.markdown("""
     <div class='side-panel'>
 
@@ -231,11 +244,11 @@ with right:
         </div>
 
         <div class='side-item'>
-            📈 Consultas: 12,840 +12%
+            📈 Consultas: 12,840
         </div>
 
         <div class='side-item'>
-            🎯 Precisión: 98% +3%
+            🎯 Precisión: 98%
         </div>
 
         <div class='side-item'>
@@ -250,7 +263,7 @@ with right:
     """, unsafe_allow_html=True)
 
 # =====================================================
-# CHAT
+# CHAT HISTORY
 # =====================================================
 
 st.markdown("<br>", unsafe_allow_html=True)
@@ -277,7 +290,7 @@ for msg in st.session_state.messages:
         """, unsafe_allow_html=True)
 
 # =====================================================
-# INPUT
+# CHAT INPUT
 # =====================================================
 
 prompt = st.chat_input(
