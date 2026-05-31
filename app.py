@@ -64,10 +64,12 @@ left, right = st.columns([3.2, 1])
 # =====================================================
 with left:
 
-    st.markdown("""
+    hero_html = """
     <div class='hero-card'>
 
-        <div class='hero-label'>AI Powered HR Intelligence</div>
+        <div class='hero-label'>
+            AI Powered HR Intelligence
+        </div>
 
         <div class='hero-title'>
             <span>ADA PROMAX IA</span>
@@ -78,20 +80,30 @@ with left:
         </div>
 
         <div class='hero-description'>
-            Plataforma IA especializada en compensaciones, bandas salariales,
-            planes de carrera y analítica estratégica del talento. Diseñada para
-            potenciar la toma de decisiones en RRHH con precisión y velocidad.
+            Plataforma IA especializada en compensaciones,
+            bandas salariales, planes de carrera y analítica
+            estratégica del talento.
         </div>
 
         <div class='message-box'>
-            Pregúntame sobre compensaciones, carrera o RRHH...
+            Pregúntame sobre compensaciones,
+            carrera o RRHH...
         </div>
 
     </div>
-    """, unsafe_allow_html=True)
+    """
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(hero_html, unsafe_allow_html=True)
+hero1, hero2 = st.columns([1.2, 1])
 
+with hero1:
+    st.markdown(hero_html, unsafe_allow_html=True)
+
+with hero2:
+    st.image(
+        "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
+        width=350
+    )
     # =====================================================
     # SUGERENCIAS RÁPIDAS — TARJETAS NEO
     # =====================================================
