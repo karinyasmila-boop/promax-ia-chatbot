@@ -533,53 +533,59 @@ SIDE PANEL
 
 with side_col:
 
-    st.markdown("""
-    <div class='side-panel'>
+    st.markdown(
+        """
+        <div class='side-panel'>
 
-        <div class='side-title'>
-            Capacidades ADA IA
+            <div class='side-title'>
+                Capacidades ADA IA
+            </div>
+
+            <div class='side-item'>
+                📊 Análisis inteligente de datos
+            </div>
+
+            <div class='side-item'>
+                🎯 Recomendaciones personalizadas
+            </div>
+
+            <div class='side-item'>
+                🌐 Información actualizada
+            </div>
+
+            <div class='side-item'>
+                ⏰ Soporte 24/7
+            </div>
+
         </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-        <div class='side-item'>
-            📊 Análisis inteligente de datos
+    st.markdown(
+        """
+        <div class='side-panel'>
+
+            <div class='side-title'>
+                Estadísticas
+            </div>
+
+            <div class='side-item'>
+                📈 Precisión: 96%
+            </div>
+
+            <div class='side-item'>
+                ⚡ Tiempo respuesta: 1.2s
+            </div>
+
+            <div class='side-item'>
+                😊 Satisfacción: 98%
+            </div>
+
         </div>
-
-        <div class='side-item'>
-            🎯 Recomendaciones personalizadas
-        </div>
-
-        <div class='side-item'>
-            🌐 Información actualizada
-        </div>
-
-        <div class='side-item'>
-            ⏰ Soporte 24/7
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class='side-panel'>
-
-        <div class='side-title'>
-            Estadísticas
-        </div>
-
-        <div class='side-item'>
-            📈 Precisión: 96%
-        </div>
-
-        <div class='side-item'>
-            ⚡ Tiempo respuesta: 1.2s
-        </div>
-
-        <div class='side-item'>
-            😊 Satisfacción: 98%
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 /* =========================================================
 CHAT
 ========================================================= */
