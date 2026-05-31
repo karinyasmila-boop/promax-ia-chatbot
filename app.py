@@ -94,9 +94,8 @@ with left:
     """
 
     st.markdown(hero_html, unsafe_allow_html=True)
-with hero2:
     st.image(
-        "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
+        "C:\Users\Karin\Pictures\Copilot_20260530_200709.png",
         width=350
     )
     # =====================================================
