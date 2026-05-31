@@ -106,15 +106,11 @@ section[data-testid="stSidebar"] {
 # =========================================================
 
 # =========================================================
-# KPI SATISFACCIÓN PROMEDIO
+# KPI SATISFACCIÓN
 # =========================================================
 
 if "ratings" not in st.session_state:
     st.session_state.ratings = []
-
-# =========================================================
-# CALCULAR MÉTRICAS
-# =========================================================
 
 if len(st.session_state.ratings) > 0:
 
@@ -124,135 +120,60 @@ if len(st.session_state.ratings) > 0:
         1
     )
 
+    total_feedbacks = len(st.session_state.ratings)
+
+    positivas = len([
+        r for r in st.session_state.ratings
+        if r >= 4
+    ])
+
+    negativas = len([
+        r for r in st.session_state.ratings
+        if r <= 2
+    ])
+
 else:
 
     promedio_satisfaccion = 0
-
-total_feedbacks = len(st.session_state.ratings)
-
-positivas = len([
-    r for r in st.session_state.ratings
-    if r >= 4
-])
-
-negativas = len([
-    r for r in st.session_state.ratings
-    if r <= 2
-])
+    total_feedbacks = 0
+    positivas = 0
+    negativas = 0
 
 # =========================================================
-# TARJETAS KPI
+# TARJETAS
 # =========================================================
 
 sat1, sat2, sat3, sat4 = st.columns(4)
 
 with sat1:
 
-    st.markdown(f"""
-    <div style="
-        background:#111827;
-        border-radius:20px;
-        padding:25px;
-        text-align:center;
-        border:1px solid rgba(255,255,255,0.05);
-    ">
-        <h3 style="color:white;">
-            ⭐ Satisfacción
-        </h3>
-
-        <h1 style="
-            color:#FACC15;
-            font-size:52px;
-        ">
-            {promedio_satisfaccion}
-        </h1>
-
-        <p style="color:#94A3B8;">
-            Promedio General
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.metric(
+        label="⭐ Satisfacción",
+        value=promedio_satisfaccion
+    )
 
 with sat2:
 
-    st.markdown(f"""
-    <div style="
-        background:#111827;
-        border-radius:20px;
-        padding:25px;
-        text-align:center;
-        border:1px solid rgba(255,255,255,0.05);
-    ">
-        <h3 style="color:white;">
-            📨 Feedbacks
-        </h3>
-
-        <h1 style="
-            color:#38BDF8;
-            font-size:52px;
-        ">
-            {total_feedbacks}
-        </h1>
-
-        <p style="color:#94A3B8;">
-            Total Recibidos
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.metric(
+        label="📨 Feedbacks",
+        value=total_feedbacks
+    )
 
 with sat3:
 
-    st.markdown(f"""
-    <div style="
-        background:#111827;
-        border-radius:20px;
-        padding:25px;
-        text-align:center;
-        border:1px solid rgba(255,255,255,0.05);
-    ">
-        <h3 style="color:white;">
-            😊 Positivas
-        </h3>
-
-        <h1 style="
-            color:#22C55E;
-            font-size:52px;
-        ">
-            {positivas}
-        </h1>
-
-        <p style="color:#94A3B8;">
-            Rating ≥ 4
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.metric(
+        label="😊 Positivas",
+        value=positivas
+    )
 
 with sat4:
 
-    st.markdown(f"""
-    <div style="
-        background:#111827;
-        border-radius:20px;
-        padding:25px;
-        text-align:center;
-        border:1px solid rgba(255,255,255,0.05);
-    ">
-        <h3 style="color:white;">
-            😞 Negativas
-        </h3>
+    st.metric(
+        label="😞 Negativas",
+        value=negativas
+    )
 
-        <h1 style="
-            color:#EF4444;
-            font-size:52px;
-        ">
-            {negativas}
-        </h1>
-
-        <p style="color:#94A3B8;">
-            Rating ≤ 2
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 
 # =========================================================
 # ESPACIO
