@@ -561,16 +561,56 @@ for msg in st.session_state.messages:
 
 if len(st.session_state.messages) == 0:
 
-    st.session_state.messages.append({
-        "role":"assistant",
-        "content":"""
-👋 Hola, soy ADA PROMAX IA.
+else:
 
-Para comenzar necesito tu código de empleado.
+    saludo_words = [
+        "hola",
+        "buenas",
+        "hello",
+        "hi",
+        "holi",
+        "qué tal",
+        "que tal",
+        "buen día",
+        "buenos días",
+        "buenas tardes",
+        "buenas noches"
+    ]
+
+    if any(
+        word in prompt.lower()
+        for word in saludo_words
+    ):
+
+        respuesta = """
+👋 ¡Hola! Soy ADA PROMAX IA, tu copiloto inteligente de Recursos Humanos.
+
+Estoy aquí para ayudarte con:
+
+✅ Bandas salariales  
+✅ Plan de carrera  
+✅ Beneficios  
+✅ Diagnóstico IA RRHH  
+✅ Analítica del talento  
+
+Para comenzar necesito tu código de empleado 😊
 
 Ejemplo:
 PE0000012
 """
+
+    else:
+
+        respuesta = """
+🔐 Para poder acceder a tu información personalizada necesito tu código de empleado.
+
+Ejemplo:
+PE0000012
+"""
+
+    st.session_state.messages.append({
+        "role":"assistant",
+        "content":respuesta
     })
 
 # =========================================================
