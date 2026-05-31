@@ -95,8 +95,8 @@ with left:
 
     st.markdown(hero_html, unsafe_allow_html=True)
     st.image(
-        "C:\Users\Karin\Pictures\Copilot_20260530_200709.png",
-        width=350
+        "assets/Copilot_20260530_202650.png",
+        width=380
     )
     # =====================================================
     # SUGERENCIAS RÁPIDAS — TARJETAS NEO
