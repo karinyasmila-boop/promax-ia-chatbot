@@ -2,9 +2,9 @@ import streamlit as st
 import requests
 from streamlit_option_menu import option_menu
 
-# =========================================================
-# PAGE CONFIG
-# =========================================================
+# =====================================================
+# CONFIG
+# =====================================================
 
 st.set_page_config(
     page_title="ADA PROMAX IA",
@@ -13,76 +13,32 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# =========================================================
-# CUSTOM CSS
-# =========================================================
+# =====================================================
+# CSS
+# =====================================================
 
 st.markdown("""
 <style>
-
-/* =========================================================
-FONTS
-========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
 }
 
-/* =========================================================
-GLOBAL
-========================================================= */
+/* BACKGROUND */
 
 .stApp {
 
     background:
-    radial-gradient(circle at top left, rgba(124,58,237,0.22), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(6,182,212,0.22), transparent 28%),
+    radial-gradient(circle at top left, rgba(124,58,237,0.20), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(6,182,212,0.20), transparent 30%),
     #020617;
 
     color: white;
 }
 
-header {
-    visibility: hidden;
-}
-
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-/* =========================================================
-SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #020617;
-}
-
-::-webkit-scrollbar-thumb {
-
-    background:
-    linear-gradient(
-        #7C3AED,
-        #3B82F6
-    );
-
-    border-radius: 999px;
-}
-
-/* =========================================================
-SIDEBAR
-========================================================= */
+/* SIDEBAR */
 
 section[data-testid="stSidebar"] {
 
@@ -94,56 +50,12 @@ section[data-testid="stSidebar"] {
     );
 
     border-right:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.05);
 }
 
-section[data-testid="stSidebar"] > div {
-    padding-top: 24px;
-}
+/* LOGO */
 
-/* =========================================================
-SIDEBAR MENU
-========================================================= */
-
-.nav-link {
-
-    border-radius: 18px !important;
-
-    margin-bottom: 10px !important;
-
-    transition: all 0.3s ease !important;
-
-    padding: 10px 14px !important;
-}
-
-.nav-link:hover {
-
-    background:
-    rgba(139,92,246,0.14) !important;
-
-    transform: translateX(4px);
-}
-
-.nav-link-selected {
-
-    background:
-    linear-gradient(
-        135deg,
-        #7C3AED,
-        #3B82F6
-    ) !important;
-
-    border-radius: 18px !important;
-
-    box-shadow:
-        0 0 25px rgba(124,58,237,0.35);
-}
-
-/* =========================================================
-LOGO
-========================================================= */
-
-.logo-title {
+.logo {
 
     font-size: 34px;
 
@@ -158,7 +70,6 @@ LOGO
     );
 
     -webkit-background-clip: text;
-
     -webkit-text-fill-color: transparent;
 }
 
@@ -166,160 +77,91 @@ LOGO
 
     color: #CBD5E1;
 
-    font-size: 15px;
-
     margin-bottom: 25px;
 }
 
-/* =========================================================
-ONLINE BADGE
-========================================================= */
+/* ONLINE */
 
-.online-badge {
+.online {
 
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    width: fit-content;
-
-    padding: 12px 18px;
-
-    border-radius: 999px;
-
-    background:
-    rgba(255,255,255,0.04);
-
-    border:
-    1px solid rgba(255,255,255,0.08);
-
-    margin-bottom: 28px;
-
-    backdrop-filter: blur(14px);
-}
-
-.online-dot {
-
-    width: 10px;
-
-    height: 10px;
-
-    border-radius: 50%;
-
-    background: #22C55E;
-
-    box-shadow:
-        0 0 14px #22C55E;
-}
-
-/* =========================================================
-HERO CARD
-========================================================= */
-
-.hero-card {
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(10,15,35,0.94),
-        rgba(20,25,55,0.94)
-    );
-
-    border:
-    1px solid rgba(255,255,255,0.06);
-
-    border-radius: 32px;
-
-    padding: 40px;
-
-    min-height: 520px;
-
-    box-shadow:
-        0 0 70px rgba(59,130,246,0.10);
-
-    backdrop-filter: blur(18px);
-}
-
-/* =========================================================
-HERO LABEL
-========================================================= */
-
-.hero-label {
-
-    width: fit-content;
+    display: inline-block;
 
     padding: 10px 18px;
 
     border-radius: 999px;
 
     background:
-    rgba(124,58,237,0.15);
+    rgba(255,255,255,0.05);
 
     border:
-    1px solid rgba(124,58,237,0.35);
+    1px solid rgba(255,255,255,0.06);
 
-    color: #C4B5FD;
+    margin-bottom: 25px;
 
-    font-size: 13px;
+    color: #22C55E;
 
     font-weight: 600;
-
-    margin-bottom: 24px;
 }
 
-/* =========================================================
-HERO TITLE
-========================================================= */
+/* HERO */
+
+.hero-card {
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(15,23,42,0.95),
+        rgba(17,24,39,0.95)
+    );
+
+    border:
+    1px solid rgba(255,255,255,0.05);
+
+    border-radius: 28px;
+
+    padding: 45px;
+
+    min-height: 520px;
+
+    box-shadow:
+        0 0 50px rgba(59,130,246,0.10);
+}
 
 .hero-title {
 
-    font-size: 68px !important;
+    font-size: 68px;
 
-    font-weight: 800 !important;
+    font-weight: 800;
 
     line-height: 1.1;
 
-    margin-bottom: 18px;
-
-    color: white;
+    margin-bottom: 10px;
 }
 
-.hero-title span {
+.hero-gradient {
 
     background: linear-gradient(
         90deg,
         #60A5FA,
-        #818CF8,
         #A78BFA
     );
 
     -webkit-background-clip: text;
-
     -webkit-text-fill-color: transparent;
 }
 
-/* =========================================================
-SUBTITLE
-========================================================= */
+.hero-sub {
 
-.hero-subtitle {
-
-    font-size: 22px;
+    font-size: 24px;
 
     font-weight: 700;
 
     color: #A78BFA;
 
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
-/* =========================================================
-DESCRIPTION
-========================================================= */
-
-.hero-description {
+.hero-desc {
 
     color: #CBD5E1;
 
@@ -327,39 +169,33 @@ DESCRIPTION
 
     line-height: 1.8;
 
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-/* =========================================================
-MESSAGE BOX
-========================================================= */
+/* MESSAGE BOX */
 
 .message-box {
 
     background:
     linear-gradient(
         90deg,
-        rgba(124,58,237,0.25),
-        rgba(59,130,246,0.12)
+        rgba(124,58,237,0.22),
+        rgba(59,130,246,0.10)
     );
 
     border:
     1px solid rgba(139,92,246,0.35);
 
-    border-radius: 24px;
+    border-radius: 22px;
 
-    padding: 24px 32px;
+    padding: 22px;
 
     color: white;
 
-    font-size: 18px;
-
-    margin-top: 20px;
+    font-size: 17px;
 }
 
-/* =========================================================
-FEATURE CARDS
-========================================================= */
+/* FEATURE CARD */
 
 .feature-card {
 
@@ -367,29 +203,26 @@ FEATURE CARDS
     rgba(255,255,255,0.03);
 
     border:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.05);
 
-    border-radius: 26px;
+    border-radius: 22px;
 
-    padding: 30px;
+    padding: 28px;
 
     min-height: 190px;
 
-    transition: 0.35s ease;
-
-    cursor: pointer;
+    transition: 0.3s;
 }
 
 .feature-card:hover {
 
-    transform:
-    translateY(-6px);
+    transform: translateY(-5px);
 
     border:
     1px solid #8B5CF6;
 
     box-shadow:
-        0 0 30px rgba(139,92,246,0.28);
+        0 0 25px rgba(139,92,246,0.30);
 }
 
 .feature-title {
@@ -400,7 +233,7 @@ FEATURE CARDS
 
     margin-top: 16px;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .feature-desc {
@@ -410,9 +243,7 @@ FEATURE CARDS
     line-height: 1.7;
 }
 
-/* =========================================================
-SIDE PANEL
-========================================================= */
+/* SIDE PANEL */
 
 .side-panel {
 
@@ -420,9 +251,9 @@ SIDE PANEL
     rgba(255,255,255,0.03);
 
     border:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.05);
 
-    border-radius: 26px;
+    border-radius: 24px;
 
     padding: 28px;
 
@@ -435,7 +266,7 @@ SIDE PANEL
 
     font-weight: 700;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .side-item {
@@ -445,11 +276,9 @@ SIDE PANEL
     color: #CBD5E1;
 }
 
-/* =========================================================
-CHAT
-========================================================= */
+/* CHAT */
 
-.user-message {
+.user-msg {
 
     background:
     linear-gradient(
@@ -458,35 +287,33 @@ CHAT
         #7C3AED
     );
 
-    padding: 18px 22px;
+    padding: 18px;
 
-    border-radius: 20px;
-
-    margin-bottom: 15px;
+    border-radius: 18px;
 
     margin-left: 30%;
+
+    margin-bottom: 15px;
 }
 
-.assistant-message {
+.bot-msg {
 
     background:
     rgba(255,255,255,0.04);
 
     border:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.05);
 
-    padding: 18px 24px;
+    padding: 18px;
 
-    border-radius: 20px;
-
-    margin-bottom: 15px;
+    border-radius: 18px;
 
     margin-right: 30%;
+
+    margin-bottom: 15px;
 }
 
-/* =========================================================
-INPUT
-========================================================= */
+/* INPUT */
 
 .stChatInput input {
 
@@ -500,47 +327,20 @@ INPUT
 
     color: white !important;
 
-    padding-left: 20px !important;
-
     height: 65px !important;
-
-    font-size: 16px !important;
-}
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .hero-title {
-        font-size: 42px !important;
-    }
-
-    .hero-card {
-        padding: 28px;
-    }
-
-    .user-message {
-        margin-left: 5%;
-    }
-
-    .assistant-message {
-        margin-right: 5%;
-    }
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# =========================================================
+# =====================================================
 # SIDEBAR
-# =========================================================
+# =====================================================
 
 with st.sidebar:
 
     st.markdown("""
-    <div class='logo-title'>
+    <div class='logo'>
         ADA PROMAX IA
     </div>
 
@@ -550,9 +350,8 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div class='online-badge'>
-        <div class='online-dot'></div>
-        En línea
+    <div class='online'>
+        ● En línea
     </div>
     """, unsafe_allow_html=True)
 
@@ -577,131 +376,126 @@ with st.sidebar:
         default_index=0
     )
 
-# =========================================================
-# MAIN LAYOUT
-# =========================================================
+# =====================================================
+# MAIN
+# =====================================================
 
-main_col, side_col = st.columns([3,1])
+left, right = st.columns([3,1])
 
-# =========================================================
+# =====================================================
 # HERO
-# =========================================================
+# =====================================================
 
-with main_col:
+with left:
 
-    hero_left, hero_right = st.columns([1,1.4])
+    st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
 
-    with hero_left:
+    c1, c2 = st.columns([1,1.4])
 
-        st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
+    with c1:
 
         st.image(
             "https://images.unsplash.com/photo-1677442136019-21780ecad995",
             width=340
         )
 
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with hero_right:
+    with c2:
 
         st.markdown("""
-        <div class='hero-card'>
+        <div class='hero-title'>
+            Hola, soy
+            <span class='hero-gradient'>
+                ADA PROMAX IA
+            </span>
+            👋
+        </div>
 
-            <div class='hero-label'>
-                🤖 AI Powered HR Intelligence
+        <div class='hero-sub'>
+            Tu asistente inteligente en Recursos Humanos
+        </div>
+
+        <div class='hero-desc'>
+            Estoy aquí para ayudarte con información
+            especializada en compensaciones,
+            desarrollo profesional y análisis
+            estratégico del talento.
+        </div>
+
+        <div class='message-box'>
+            Puedes preguntarme sobre bandas salariales,
+            planes de carrera, análisis de compensación
+            y mucho más...
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    st.markdown("## ⚡ Sugerencias rápidas")
+
+    f1, f2, f3 = st.columns(3)
+
+    with f1:
+
+        st.markdown("""
+        <div class='feature-card'>
+
+            <div style='font-size:32px;'>💰</div>
+
+            <div class='feature-title'>
+                Bandas Salariales
             </div>
 
-            <div class='hero-title'>
-                Hola, soy <span>ADA PROMAX IA</span> 👋
-            </div>
-
-            <div class='hero-subtitle'>
-                Tu asistente inteligente en Recursos Humanos
-            </div>
-
-            <div class='hero-description'>
-                Estoy aquí para ayudarte con información
-                especializada en compensaciones,
-                desarrollo profesional y análisis
-                estratégico del talento.
-            </div>
-
-            <div class='message-box'>
-                Puedes preguntarme sobre bandas salariales,
-                planes de carrera y compensaciones.
+            <div class='feature-desc'>
+                Información sobre estructura salarial
+                y compensaciones.
             </div>
 
         </div>
         """, unsafe_allow_html=True)
 
-# =========================================================
-# QUICK ACTIONS
-# =========================================================
+    with f2:
 
-st.markdown("## ⚡ Sugerencias rápidas")
+        st.markdown("""
+        <div class='feature-card'>
 
-c1, c2, c3 = st.columns(3)
+            <div style='font-size:32px;'>📈</div>
 
-with c1:
+            <div class='feature-title'>
+                Plan de Carrera
+            </div>
 
-    st.markdown("""
-    <div class='feature-card'>
+            <div class='feature-desc'>
+                Desarrollo profesional y crecimiento.
+            </div>
 
-        <div style='font-size:32px;'>💰</div>
-
-        <div class='feature-title'>
-            Bandas Salariales
         </div>
+        """, unsafe_allow_html=True)
 
-        <div class='feature-desc'>
-            Información sobre estructura salarial
-            y compensaciones.
+    with f3:
+
+        st.markdown("""
+        <div class='feature-card'>
+
+            <div style='font-size:32px;'>🧠</div>
+
+            <div class='feature-title'>
+                Diagnóstico IA
+            </div>
+
+            <div class='feature-desc'>
+                Análisis inteligente de compensaciones.
+            </div>
+
         </div>
+        """, unsafe_allow_html=True)
 
-    </div>
-    """, unsafe_allow_html=True)
-
-with c2:
-
-    st.markdown("""
-    <div class='feature-card'>
-
-        <div style='font-size:32px;'>📈</div>
-
-        <div class='feature-title'>
-            Plan de Carrera
-        </div>
-
-        <div class='feature-desc'>
-            Desarrollo profesional y crecimiento.
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-with c3:
-
-    st.markdown("""
-    <div class='feature-card'>
-
-        <div style='font-size:32px;'>🧠</div>
-
-        <div class='feature-title'>
-            Diagnóstico IA
-        </div>
-
-        <div class='feature-desc'>
-            Análisis inteligente de compensaciones.
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-# =========================================================
+# =====================================================
 # RIGHT PANEL
-# =========================================================
+# =====================================================
 
-with side_col:
+with right:
 
     st.markdown("""
     <div class='side-panel'>
@@ -751,9 +545,9 @@ with side_col:
     </div>
     """, unsafe_allow_html=True)
 
-# =========================================================
+# =====================================================
 # CHAT
-# =========================================================
+# =====================================================
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -765,7 +559,7 @@ for msg in st.session_state.messages:
     if msg["role"] == "user":
 
         st.markdown(f"""
-        <div class='user-message'>
+        <div class='user-msg'>
             👤 {msg["content"]}
         </div>
         """, unsafe_allow_html=True)
@@ -773,14 +567,14 @@ for msg in st.session_state.messages:
     else:
 
         st.markdown(f"""
-        <div class='assistant-message'>
+        <div class='bot-msg'>
             🤖 {msg["content"]}
         </div>
         """, unsafe_allow_html=True)
 
-# =========================================================
-# CHAT INPUT
-# =========================================================
+# =====================================================
+# INPUT
+# =====================================================
 
 prompt = st.chat_input(
     "Pregúntale a ADA sobre compensaciones, carrera o RRHH..."
