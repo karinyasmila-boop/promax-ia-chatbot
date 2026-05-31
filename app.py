@@ -531,41 +531,55 @@ FEATURE CARDS
 SIDE PANEL
 ========================================================= */
 
-.side-panel {
+with side_col:
 
-    background:
-    rgba(255,255,255,0.03);
+    st.markdown("""
+    <div class='side-panel'>
 
-    border:
-    1px solid rgba(255,255,255,0.06);
+        <div class='side-title'>
+            Capacidades ADA IA
+        </div>
 
-    border-radius: 26px;
+        <div class='side-item'>
+            📊 Análisis inteligente de datos
+        </div>
 
-    padding: 28px;
+        <div class='side-item'>
+            🎯 Recomendaciones personalizadas
+        </div>
 
-    margin-bottom: 20px;
+        <div class='side-item'>
+            🌐 Información actualizada
+        </div>
 
-    backdrop-filter: blur(16px);
-}
+        <div class='side-item'>
+            ⏰ Soporte 24/7
+        </div>
 
-.side-title {
+    </div>
+    """, unsafe_allow_html=True)
 
-    font-size: 22px;
+    st.markdown("""
+    <div class='side-panel'>
 
-    font-weight: 700;
+        <div class='side-title'>
+            Estadísticas
+        </div>
 
-    margin-bottom: 22px;
-}
+        <div class='side-item'>
+            📈 Precisión: 96%
+        </div>
 
-.side-item {
+        <div class='side-item'>
+            ⚡ Tiempo respuesta: 1.2s
+        </div>
 
-    margin-bottom: 18px;
+        <div class='side-item'>
+            😊 Satisfacción: 98%
+        </div>
 
-    color: #CBD5E1;
-
-    line-height: 1.6;
-}
-
+    </div>
+    """, unsafe_allow_html=True)
 /* =========================================================
 CHAT
 ========================================================= */
@@ -738,78 +752,73 @@ with st.sidebar:
 
 main_col, side_col = st.columns([3, 1])
 
+```python
 # =========================================================
 # HERO SECTION
 # =========================================================
 
 with main_col:
 
-    st.markdown(
-        "<div class='hero-card'>",
-        unsafe_allow_html=True
-    )
-
     hero_left, hero_right = st.columns([1, 1.4])
 
+    # =====================================================
     # LEFT IMAGE
+    # =====================================================
 
     with hero_left:
 
-        st.markdown(
-            "<div class='hero-image'>",
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+        <div class='hero-card'>
+        """, unsafe_allow_html=True)
 
         st.image(
-            "https://i.imgur.com/MtV8Z6v.png",
+            "https://images.unsplash.com/photo-1677442136019-21780ecad995",
             width=340
         )
 
-        st.markdown(
-            "</div>",
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+        </div>
+        """, unsafe_allow_html=True)
 
+    # =====================================================
     # RIGHT CONTENT
+    # =====================================================
 
     with hero_right:
 
         st.markdown("""
-        <div class='hero-label'>
-            🤖 AI Powered HR Intelligence
-        </div>
+        <div class='hero-card'>
 
-        <div class='hero-title'>
-            Hola, soy <span>ADA PROMAX IA</span> 👋
-        </div>
+            <div class='hero-label'>
+                🤖 AI Powered HR Intelligence
+            </div>
 
-        <div class='hero-subtitle'>
-            Tu asistente inteligente en Recursos Humanos
-        </div>
+            <div class='hero-title'>
+                Hola, soy <span>ADA PROMAX IA</span> 👋
+            </div>
 
-        <div class='hero-description'>
-            Estoy aquí para ayudarte con información
-            especializada en compensaciones, desarrollo
-            profesional y análisis estratégico del talento.
-        </div>
+            <div class='hero-subtitle'>
+                Tu asistente inteligente en Recursos Humanos
+            </div>
 
-        <div class='message-box'>
-            Puedes preguntarme sobre bandas salariales,
-            planes de carrera, análisis de compensación
-            y mucho más...
+            <div class='hero-description'>
+                Estoy aquí para ayudarte con información
+                especializada en compensaciones, desarrollo
+                profesional y análisis estratégico del talento.
+            </div>
+
+            <div class='message-box'>
+                Puedes preguntarme sobre bandas salariales,
+                planes de carrera, análisis de compensación
+                y mucho más...
+            </div>
+
         </div>
         """, unsafe_allow_html=True)
-
-    st.markdown(
-        "</div>",
-        unsafe_allow_html=True
-    )
 
 # =========================================================
 # QUICK ACTIONS
 # =========================================================
-
-st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("## ⚡ Sugerencias rápidas")
 
@@ -819,7 +828,8 @@ with c1:
 
     st.markdown("""
     <div class='feature-card'>
-        💰
+
+        <div style='font-size:32px;'>💰</div>
 
         <div class='feature-title'>
             Bandas Salariales
@@ -829,6 +839,7 @@ with c1:
             Información sobre estructura salarial
             y compensaciones.
         </div>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -836,7 +847,8 @@ with c2:
 
     st.markdown("""
     <div class='feature-card'>
-        📈
+
+        <div style='font-size:32px;'>📈</div>
 
         <div class='feature-title'>
             Plan de Carrera
@@ -845,6 +857,7 @@ with c2:
         <div class='feature-desc'>
             Rutas de crecimiento y desarrollo profesional.
         </div>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -852,7 +865,8 @@ with c3:
 
     st.markdown("""
     <div class='feature-card'>
-        🧠
+
+        <div style='font-size:32px;'>🧠</div>
 
         <div class='feature-title'>
             Diagnóstico IA
@@ -861,6 +875,7 @@ with c3:
         <div class='feature-desc'>
             Análisis inteligente de compensaciones.
         </div>
+
     </div>
     """, unsafe_allow_html=True)
 
