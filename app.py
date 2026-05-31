@@ -62,11 +62,35 @@ left, right = st.columns([3.2, 1])
 # =====================================================
 # HERO FUTURISTA
 # =====================================================
+```python
+# =====================================================
+# HERO FUTURISTA
+# =====================================================
+
 with left:
 
-    hero_html = """
-    <div class='hero-card'>
+    st.markdown("<div class='hero-card'>", unsafe_allow_html=True)
 
+    hero1, hero2 = st.columns([1, 1.4])
+
+    # =================================================
+    # ROBOT IZQUIERDA
+    # =================================================
+
+    with hero1:
+
+        st.image(
+            "assets/Copilot_20260530_200709.png",
+            width=320
+        )
+
+    # =================================================
+    # TEXTO DERECHA
+    # =================================================
+
+    with hero2:
+
+        st.markdown("""
         <div class='hero-label'>
             AI Powered HR Intelligence
         </div>
@@ -89,15 +113,9 @@ with left:
             Pregúntame sobre compensaciones,
             carrera o RRHH...
         </div>
+        """, unsafe_allow_html=True)
 
-    </div>
-    """
-
-    st.markdown(hero_html, unsafe_allow_html=True)
-    st.image(
-        "assets/Copilot_20260530_200709.png",
-        width=380
-    )
+    st.markdown("</div>", unsafe_allow_html=True)
     # =====================================================
     # SUGERENCIAS RÁPIDAS — TARJETAS NEO
     # =====================================================
