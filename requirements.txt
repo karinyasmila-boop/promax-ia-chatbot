@@ -4,3 +4,4 @@ streamlit-option-menu
 streamlit-lottie
 streamlit-extras
 streamlit-card
+streamlit-shadcn-ui
