@@ -564,73 +564,6 @@ prompt = st.chat_input(
 )
 
 # =========================================================
-# CHAT ENGINE
-# =========================================================
-
-if prompt:
-
-    # =============================================
-    # DETECCIÓN SALUDO
-    # =============================================
-
-    saludo_words = [
-        "hola",
-        "oye",
-        "buenas",
-        "hello",
-        "hi",
-        "holi",
-        "qué tal",
-        "que tal",
-        "buen día",
-        "buenos días",
-        "buenas tardes",
-        "buenas noches"
-    ]
-    
-    # =============================================
-    # SALUDO NATURAL
-    # =============================================
-
-    if (
-        not st.session_state.authenticated
-        and any(
-            word in prompt.lower()
-            for word in saludo_words
-        )
-    ):
-        respuesta = """
-👋 ¡Hola! Soy ADA PROMAX IA, tu copiloto inteligente de Recursos Humanos.
-
-Estoy aquí para ayudarte con:
-
-✅ Bandas salariales  
-✅ Plan de carrera  
-✅ Beneficios  
-✅ Diagnóstico IA RRHH  
-✅ Analítica del talento  
-
-Para comenzar necesito tu código de empleado 😊
-
-Ejemplo:
-PE0000012
-"""
-
-    else:
-
-        respuesta = """
-🔐 Para poder acceder a tu información personalizada necesito tu código de empleado.
-
-Ejemplo:
-PE0000012
-"""
-
-    st.session_state.messages.append({
-    "role":"assistant",
-    "content":respuesta
-})
-
-# =========================================================
 # INPUT CHAT
 # =========================================================
 
@@ -722,6 +655,7 @@ PE0000012
             st.session_state.employee_id = prompt.upper()
 
             st.session_state.awaiting_id = False
+            st.session_state.authenticated = True
 
             with st.spinner("Validando colaborador..."):
 
