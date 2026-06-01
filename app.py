@@ -290,49 +290,14 @@ st.markdown("<br>", unsafe_allow_html=True)
 .kpi-label{
     color:#9CA3AF;
 }
-
 </style>
 """, unsafe_allow_html=True)
-
-# =========================================================
-# SESSION STATE
-# =========================================================
-
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-if "employee_id" not in st.session_state:
-    st.session_state.employee_id = None
-
-if "awaiting_id" not in st.session_state:
-    st.session_state.awaiting_id = True
-
-if "conversation_id" not in st.session_state:
-    st.session_state.conversation_id = str(uuid.uuid4())
-
-if "analytics" not in st.session_state:
-    st.session_state.analytics = {
-        "consultas": 0,
-        "tiempo_total": 0,
-        "errores": 0
-    }
 
 # =========================================================
 # FUNCIONES
 # =========================================================
 
-def verificar_estado_ada():
 
-    try:
-        response = requests.get(API_STATUS, timeout=5)
-
-        if response.status_code == 200:
-            return True
-
-        return False
-
-    except:
-        return False
 
 def enviar_a_make(payload):
 
@@ -374,7 +339,7 @@ def generar_payload(prompt, modulo):
 # ESTADO ADA
 # =========================================================
 
-estado_online = verificar_estado_ada()
+estado_online = True
 
 estado_texto = "En línea" if estado_online else "Desconectado"
 
@@ -484,6 +449,7 @@ with b1:
             "role":"user",
             "content":consulta
         })
+        st.rerun()
 
 with b2:
 
@@ -495,7 +461,8 @@ with b2:
             "role":"user",
             "content":consulta
         })
-
+        st.rerun()
+        
 with b3:
 
     if st.button("🤖 Diagnóstico IA", use_container_width=True):
@@ -506,7 +473,8 @@ with b3:
             "role":"user",
             "content":consulta
         })
-
+        st.rerun()
+        
 # =========================================================
 # KPIs REALES
 # =========================================================
@@ -585,14 +553,6 @@ for msg in st.session_state.messages:
         f"<div class='{role_class}'>{icon} {msg['content']}</div>",
         unsafe_allow_html=True
     )
-
-# =========================================================
-# INPUT
-# =========================================================
-
-prompt = st.chat_input(
-    "Escribe tu consulta..."
-)
 
 # =========================================================
 # INPUT CHAT
@@ -963,6 +923,7 @@ with star5:
 # MOSTRAR RATING
 # =========================================================
 
+comentario = ""
 if st.session_state.selected_rating > 0:
 
     rating = st.session_state.selected_rating
