@@ -659,25 +659,25 @@ PE0000012
 
                     response = enviar_a_make(payload)
 
-try:
-    result = response.json()
-except:
-    result = {}
-
-nombre = result.get(
-    "nombre",
-    "Colaborador"
-)
-
-puesto = result.get(
-    "puesto",
-    "No identificado"
-)
-
-area = result.get(
-    "area",
-    "No identificada"
-)
+                    try:
+                        result = response.json()
+                    except:
+                        result = {}
+                    
+                    nombre = result.get(
+                        "nombre",
+                        "Colaborador"
+                    )
+                    
+                    puesto = result.get(
+                        "puesto",
+                        "No identificado"
+                    )
+                    
+                    area = result.get(
+                        "area",
+                        "No identificada"
+                    )
                     bienvenida = f"""
 ✨ Bienvenido/a {nombre}
 
