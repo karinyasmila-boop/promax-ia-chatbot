@@ -348,20 +348,33 @@ estado_color = "#22c55e" if estado_online else "#ef4444"
 # =========================================================
 # SIDEBAR
 # =========================================================
+# =========================================================
+# SIDEBAR
+# =========================================================
 
 with st.sidebar:
+
+    menu_options = [
+        "Inicio",
+        "Bandas Salariales",
+        "Plan de Carrera",
+        "Diagnóstico IA",
+        "Historial",
+        "Configuración"
+    ]
+
+    current_menu = st.session_state.get(
+        "selected_menu",
+        "Inicio"
+    )
+
+    if current_menu not in menu_options:
+        current_menu = "Inicio"
 
     selected = option_menu(
         menu_title=None,
 
-        options=[
-            "Inicio",
-            "Bandas Salariales",
-            "Plan de Carrera",
-            "Diagnóstico IA",
-            "Historial",
-            "Configuración"
-        ],
+        options=menu_options,
 
         icons=[
             "house",
@@ -372,22 +385,11 @@ with st.sidebar:
             "gear"
         ],
 
-        default_index=[
-            "Inicio",
-            "Bandas Salariales",
-            "Plan de Carrera",
-            "Diagnóstico IA",
-            "Historial",
-            "Configuración"
-        ].index(
-            st.session_state.get(
-                "selected_menu",
-                "Inicio"
-            )
-        ),
+        default_index=menu_options.index(current_menu),
 
         key="selected_menu"
-)
+    )
+
 # =========================================================
 # MAIN LAYOUT
 # =========================================================
