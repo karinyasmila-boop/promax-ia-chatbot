@@ -741,7 +741,12 @@ PE0000012
 
     else:
 
-        payload = generar_payload(prompt, selected)
+        payload = {
+    "employee_id": st.session_state.employee_id,
+    "message": prompt,
+    "module": selected,
+    "conversation_id": st.session_state.conversation_id
+}
 
         with st.spinner("ADA está analizando tu consulta..."):
 
