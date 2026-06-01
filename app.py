@@ -702,18 +702,18 @@ PE0000012
                     bienvenida = f"""
                     ✨ Bienvenido/a {nombre}
                     
-                    🏢 Área: {area}
-                    💼 Puesto: {puesto}
+            🏢 Área: {area}
+            💼 Puesto: {puesto}
                     
-                    Ya puedes consultar:
+            Ya puedes consultar:
                     
-                    ✅ Bandas salariales
-                    ✅ Plan de carrera
-                    ✅ Diagnóstico IA
-                    ✅ Beneficios
-                    ✅ Compensaciones
-                    ✅ Analítica RRHH
-                    """
+            ✅ Bandas salariales
+            ✅ Plan de carrera
+            ✅ Diagnóstico IA
+            ✅ Beneficios
+            ✅ Compensaciones
+            ✅ Analítica RRHH
+            """
 
                     st.session_state.messages.append({
                         "role":"assistant",
