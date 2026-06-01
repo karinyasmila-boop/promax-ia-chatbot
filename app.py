@@ -398,8 +398,7 @@ with st.sidebar:
 
         key="selected_menu"
     )
-    # GUARDAR MENÚ ACTIVO
-    st.session_state.selected_menu = selected
+
 # =========================================================
 # MAIN LAYOUT
 # =========================================================
