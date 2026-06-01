@@ -57,6 +57,18 @@ if "analytics" not in st.session_state:
     }
 
 # =========================================================
+# DATOS DEL EMPLEADO
+# =========================================================
+
+if "nombre" not in st.session_state:
+    st.session_state.nombre = ""
+
+if "puesto" not in st.session_state:
+    st.session_state.puesto = ""
+
+if "area" not in st.session_state:
+    st.session_state.area = ""
+# =========================================================
 # CSS PREMIUM
 # =========================================================
 
@@ -345,9 +357,6 @@ estado_texto = "En línea" if estado_online else "Desconectado"
 
 estado_color = "#22c55e" if estado_online else "#ef4444"
 
-# =========================================================
-# SIDEBAR
-# =========================================================
 # =========================================================
 # SIDEBAR
 # =========================================================
@@ -682,21 +691,29 @@ PE0000012
                         "area",
                         "No identificada"
                     )
+                    # =========================================
+                    # GUARDAR DATOS DEL EMPLEADO
+                    # =========================================
+
+                    st.session_state.nombre = nombre
+                    st.session_state.puesto = puesto
+                    st.session_state.area = area
+                    
                     bienvenida = f"""
-✨ Bienvenido/a {nombre}
-
-🏢 Área: {area}
-💼 Puesto: {puesto}
-
-Ya puedes consultar:
-
-✅ Bandas salariales
-✅ Plan de carrera
-✅ Diagnóstico IA
-✅ Beneficios
-✅ Compensaciones
-✅ Analítica RRHH
-"""
+                    ✨ Bienvenido/a {nombre}
+                    
+                    🏢 Área: {area}
+                    💼 Puesto: {puesto}
+                    
+                    Ya puedes consultar:
+                    
+                    ✅ Bandas salariales
+                    ✅ Plan de carrera
+                    ✅ Diagnóstico IA
+                    ✅ Beneficios
+                    ✅ Compensaciones
+                    ✅ Analítica RRHH
+                    """
 
                     st.session_state.messages.append({
                         "role":"assistant",
