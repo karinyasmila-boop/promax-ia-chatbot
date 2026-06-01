@@ -398,7 +398,8 @@ with st.sidebar:
 
         key="selected_menu"
     )
-
+    # GUARDAR MENÚ ACTIVO
+    st.session_state.selected_menu = selected
 # =========================================================
 # MAIN LAYOUT
 # =========================================================
@@ -765,7 +766,7 @@ PE0000012
         payload = {
     "employee_id": st.session_state.employee_id,
     "message": prompt,
-    "module": selected,
+    "module": st.session_state.selected_menu,
     "conversation_id": st.session_state.conversation_id
 }
 
