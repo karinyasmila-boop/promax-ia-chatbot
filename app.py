@@ -699,8 +699,8 @@ PE0000012
                     st.session_state.puesto = puesto
                     st.session_state.area = area
                     
-                    bienvenida = f"""
-                    ✨ Bienvenido/a {nombre}
+            bienvenida = f"""
+            ✨ Bienvenido/a {nombre}
                     
             🏢 Área: {area}
             💼 Puesto: {puesto}
