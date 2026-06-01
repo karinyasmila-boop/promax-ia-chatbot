@@ -625,12 +625,10 @@ Ejemplo:
 PE0000012
 """
 
-     st.session_state.messages.append({
-            "role":"assistant",
-            "content":respuesta
-        })
-
-        st.rerun()
+    st.session_state.messages.append({
+    "role":"assistant",
+    "content":respuesta
+})
 
 # =========================================================
 # INPUT CHAT
