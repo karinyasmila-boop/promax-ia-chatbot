@@ -641,21 +641,83 @@ prompt = st.chat_input(
 )
 
 # =========================================================
-# PROCESAMIENTO
+# CHAT ENGINE
 # =========================================================
 
 if prompt:
+
+    # =============================================
+    # GUARDAR MENSAJE USER
+    # =============================================
 
     st.session_state.messages.append({
         "role":"user",
         "content":prompt
     })
 
-    # =====================================================
-    # VALIDACIÓN EMPLOYEE ID
-    # =====================================================
+    # =============================================
+    # DETECCIÓN SALUDO
+    # =============================================
+
+    saludo_words = [
+        "hola",
+        "oye",
+        "buenas",
+        "hello",
+        "hi",
+        "holi",
+        "qué tal",
+        "que tal",
+        "buen día",
+        "buenos días",
+        "buenas tardes",
+        "buenas noches"
+    ]
+
+    prompt_lower = prompt.lower()
+
+    # =============================================
+    # USUARIO NO AUTENTICADO
+    # =============================================
 
     if st.session_state.awaiting_id:
+
+        # =========================================
+        # SALUDO NATURAL
+        # =========================================
+
+        if any(
+            word in prompt_lower
+            for word in saludo_words
+        ):
+
+            respuesta = """
+👋 ¡Hola! Soy ADA PROMAX IA, tu copiloto inteligente de Recursos Humanos.
+
+Estoy aquí para ayudarte con:
+
+✅ Bandas salariales  
+✅ Plan de carrera  
+✅ Beneficios  
+✅ Diagnóstico IA RRHH  
+✅ Analítica del talento  
+
+Para comenzar necesito tu código de empleado 😊
+
+Ejemplo:
+PE0000012
+"""
+
+            st.session_state.messages.append({
+                "role":"assistant",
+                "content":respuesta
+            })
+
+            st.rerun()
+
+        # =========================================
+        # VALIDACIÓN EMPLOYEE ID
+        # =========================================
 
         if prompt.upper().startswith("PE"):
 
@@ -676,11 +738,20 @@ if prompt:
 
                     result = response.json()
 
-                    nombre = result.get("nombre","Colaborador")
+                    nombre = result.get(
+                        "nombre",
+                        "Colaborador"
+                    )
 
-                    puesto = result.get("puesto","No identificado")
+                    puesto = result.get(
+                        "puesto",
+                        "No identificado"
+                    )
 
-                    area = result.get("area","No identificada")
+                    area = result.get(
+                        "area",
+                        "No identificada"
+                    )
 
                     bienvenida = f"""
 ✨ Bienvenido/a {nombre}
@@ -707,13 +778,34 @@ Ya puedes consultar:
 
                 except Exception as e:
 
-                    st.error(f"Error conectando con Make: {e}")
+                    st.session_state.messages.append({
+                        "role":"assistant",
+                        "content":f"""
+❌ Error conectando con Make
+
+Detalle:
+{str(e)}
+"""
+                    })
+
+                    st.rerun()
+
+        # =========================================
+        # EMPLOYEE ID INVÁLIDO
+        # =========================================
 
         else:
 
+            respuesta = """
+🔐 Para acceder a tu información personalizada necesito tu código de empleado.
+
+Ejemplo:
+PE0000012
+"""
+
             st.session_state.messages.append({
                 "role":"assistant",
-                "content":"Necesito un código válido. Ejemplo: PE0000012"
+                "content":respuesta
             })
 
             st.rerun()
