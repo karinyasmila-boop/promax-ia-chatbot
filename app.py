@@ -351,50 +351,37 @@ estado_color = "#22c55e" if estado_online else "#ef4444"
 
 with st.sidebar:
 
-    st.markdown(f"""
-    <div class="logo-title">ADA PROMAX IA</div>
-    <div class="logo-sub">Asistente Inteligente RRHH</div>
+    selected = option_menu(
+        menu_title=None,
 
-    <br>
+        options=[
+            "Inicio",
+            "Bandas Salariales",
+            "Plan de Carrera",
+            "Diagnóstico IA",
+            "Historial",
+            "Configuración"
+        ],
 
-    <div class="online-badge">
-        <div class="online-dot" style="background:{estado_color}; box-shadow:0 0 12px {estado_color};"></div>
-        {estado_texto}
-    </div>
+        icons=[
+            "house",
+            "cash-stack",
+            "graph-up",
+            "cpu",
+            "clock-history",
+            "gear"
+        ],
 
-    <br>
-    """, unsafe_allow_html=True)
-
-   selected = option_menu(
-    menu_title=None,
-
-    options=[
-        "Inicio",
-        "Bandas Salariales",
-        "Plan de Carrera",
-        "Diagnóstico IA",
-        "Historial",
-        "Configuración"
-    ],
-
-    icons=[
-        "house",
-        "cash-stack",
-        "graph-up",
-        "cpu",
-        "clock-history",
-        "gear"
-    ],
-
-    default_index=[
-        "Inicio",
-        "Bandas Salariales",
-        "Plan de Carrera",
-        "Diagnóstico IA",
-        "Historial",
-        "Configuración"
-    ].index(
-        st.session_state.get(
+        default_index=[
+            "Inicio",
+            "Bandas Salariales",
+            "Plan de Carrera",
+            "Diagnóstico IA",
+            "Historial",
+            "Configuración"
+        ].index(
+            st.session_state.get(
+                "
             "selected_menu",
             "Inicio"
         )
