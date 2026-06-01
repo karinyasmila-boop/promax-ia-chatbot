@@ -25,6 +25,38 @@ MAKE_WEBHOOK = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
 API_STATUS = "https://hook.us2.make.com/9m7ly3yx7tbtn27ldm63jtg4ljcs52kj"
 
 # =========================================================
+# SESSION STATE
+# =========================================================
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+if "employee_id" not in st.session_state:
+    st.session_state.employee_id = None
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if "awaiting_id" not in st.session_state:
+    st.session_state.awaiting_id = True
+
+if "conversation_id" not in st.session_state:
+    st.session_state.conversation_id = str(uuid.uuid4())
+
+if "selected_rating" not in st.session_state:
+    st.session_state.selected_rating = 0
+
+if "ratings" not in st.session_state:
+    st.session_state.ratings = []
+
+if "analytics" not in st.session_state:
+    st.session_state.analytics = {
+        "consultas": 0,
+        "errores": 0,
+        "tiempo_total": 0
+    }
+
+# =========================================================
 # CSS PREMIUM
 # =========================================================
 
@@ -41,7 +73,6 @@ html, body, [class*="css"] {
 
 section[data-testid="stSidebar"] {
     background: linear-gradient(180deg,#111827,#0B1120);
-    border-right: 1px solid rgba(255,255,255,0.05);
 }
 
 .logo-title{
