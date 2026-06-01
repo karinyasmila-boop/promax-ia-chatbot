@@ -381,13 +381,12 @@ with st.sidebar:
             "Configuración"
         ].index(
             st.session_state.get(
-                "
-            "selected_menu",
-            "Inicio"
-        )
-    ),
+                "selected_menu",
+                "Inicio"
+            )
+        ),
 
-    key="selected_menu"
+        key="selected_menu"
 )
 # =========================================================
 # MAIN LAYOUT
