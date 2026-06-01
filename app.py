@@ -365,27 +365,43 @@ with st.sidebar:
     <br>
     """, unsafe_allow_html=True)
 
-    selected = option_menu(
-        menu_title=None,
-        options=[
-            "Inicio",
-            "Bandas Salariales",
-            "Plan de Carrera",
-            "Diagnóstico IA",
-            "Historial",
-            "Configuración"
-        ],
-        icons=[
-            "house",
-            "cash-stack",
-            "graph-up",
-            "cpu",
-            "clock-history",
-            "gear"
-        ],
-        default_index=0
-    )
+   selected = option_menu(
+    menu_title=None,
 
+    options=[
+        "Inicio",
+        "Bandas Salariales",
+        "Plan de Carrera",
+        "Diagnóstico IA",
+        "Historial",
+        "Configuración"
+    ],
+
+    icons=[
+        "house",
+        "cash-stack",
+        "graph-up",
+        "cpu",
+        "clock-history",
+        "gear"
+    ],
+
+    default_index=[
+        "Inicio",
+        "Bandas Salariales",
+        "Plan de Carrera",
+        "Diagnóstico IA",
+        "Historial",
+        "Configuración"
+    ].index(
+        st.session_state.get(
+            "selected_menu",
+            "Inicio"
+        )
+    ),
+
+    key="selected_menu"
+)
 # =========================================================
 # MAIN LAYOUT
 # =========================================================
