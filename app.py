@@ -700,20 +700,20 @@ PE0000012
                     st.session_state.area = area
                     
                     bienvenida = f"""
-                    ✨ Bienvenido/a {nombre}
+            👋 ✨ Bienvenido/a {st.session_state.nombre}
                             
-                    🏢 Área: {area}
-                    💼 Puesto: {puesto}
+            🏢 Área: {st.session_state.area}
+            💼 Puesto: {st.session_state.puesto}
                             
-                    Ya puedes consultar:
+            Ya puedes consultar:
                             
-                    ✅ Bandas salariales
-                    ✅ Plan de carrera
-                    ✅ Diagnóstico IA
-                    ✅ Beneficios
-                    ✅ Compensaciones
-                    ✅ Analítica RRHH
-                    """
+            ✅ Bandas salariales
+            ✅ Plan de carrera
+            ✅ Diagnóstico IA
+            ✅ Beneficios
+            ✅ Compensaciones
+            ✅ Analítica RRHH
+            """
 
                     st.session_state.messages.append({
                         "role":"assistant",
