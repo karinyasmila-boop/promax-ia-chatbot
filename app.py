@@ -766,7 +766,8 @@ PE0000012
     "employee_id": st.session_state.employee_id,
     "message": prompt,
     "module": st.session_state.selected_menu,
-    "conversation_id": st.session_state.conversation_id
+    "conversation_id": st.session_state.conversation_id,
+    "action": "chat"      
 }
 
         with st.spinner("ADA está analizando tu consulta..."):
